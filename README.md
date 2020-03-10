@@ -10,9 +10,7 @@ yarn dev
 ```
 or
 ```
-mkdir my-project
-git clone 
-cd my-project
+[…]
 npm install
 npm run dev
 ```
