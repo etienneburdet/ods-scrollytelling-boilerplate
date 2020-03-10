@@ -2,11 +2,17 @@
 To install and run :
 
 ```
+mkdir my-project
+git clone 
+cd my-project
 yarn
 yarn dev
 ```
 or
 ```
+mkdir my-project
+git clone 
+cd my-project
 npm install
 npm run dev
 ```
