@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   entry: {
@@ -9,10 +10,10 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   externals: {
-    jquery: 'jQuery',
+    jQuery: 'jquery',
     angular: 'angular',
     ngSanitize: 'angular-sanitize',
-    "ods-widgets": 'ods-widgets'
+    'ods-widgets': 'ods-widgets'
   },
   module: {
     rules: [{
