@@ -1,25 +1,59 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>ODS Widgets Minimal Boilerplate</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://opendatasoft.github.io/ods-widgets/dist/ods-widgets.css">
-    </head>
-    <body>
-        <div class="container-fluid" ng-app="ods-widgets">
 
-            <!-- Your code goes here! -->
-            <ods-dataset-context context="stations" stations-domain="public.opendatasoft.com" stations-dataset="jcdecaux_bike_data">
-                <ods-map context="stations"></ods-map>
-            </ods-dataset-context>
+<head>
+  <title>ODS Widgets Minimal Boilerplate</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
 
+<body>
+  <div class="container-fluid" ng-app="ods-widgets">
+
+    <!-- Your code goes here! -->
+    <ods-dataset-context context="ctx" ctx-domain="discovery.opendatasoft.com" ctx-dataset="les-grandes-dates-dissy-les-moulineaux">
+
+      {{ ctx.parameters['sort'] = 'annee' ; "" }}
+
+      <ods-infinite-scroll-results context="ctx" scroll-top-when-refresh="false" list-class="timeline-frame" result-class="timeline-item" no-results-message="No more event...">
+
+        {{ url = 'https://discovery.opendatasoft.com/explore/dataset/' + item.datasetid + '/files/' + item.fields.imagecsv.id + '/300/' ; "" }}
+
+        <div class="timeline-img" style=""></div>
+
+        <div class="timeline-content timeline-card">
+          <div class="timeline-img-header" ng-class="{'no-img' : !item.fields.imagecsv}" style="{{ 'background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0, .4)), url(' + url + ') center center no-repeat;
+                  background-size: cover;' }}">
+            <h2>{{ item.fields.evenement }}</h2>
+          </div>
+
+          <div class="date">
+            <span ng-if="item.fields.jour">{{ item.fields.jour }} </span>
+            <span ng-if="item.fields.mois"> {{item.fields.mois }} </span>
+            {{ item.fields.annee }}
+          </div>
+          <p>{{ item.fields.description }}</p>
+          <div class="timeline-bottom">
+            <a class="bnt-more" target="_blank" ng-href="{{ item.fields.web }}">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
+            <div class="timeline-geo">
+              <i class="fa fa-map-marker" aria-hidden="true"></i>
+              <ods-geotooltip coords="item.fields.coordonnees_geo" record="item" width="300" height="300">
+                {{ item.fields.numero }} {{ item.fields.adresse }}<br />{{ item.fields.ville }}
+              </ods-geotooltip>
+            </div>
+          </div>
         </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-sanitize.min.js"></script>
-        <script type="text/javascript" src="https://opendatasoft.github.io/ods-widgets/dist/ods-widgets.js"></script>
-    </body>
+
+      </ods-infinite-scroll-results>
+    </ods-dataset-context>
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-sanitize.min.js"></script>
+  <script type="text/javascript" src="https://opendatasoft.github.io/ods-widgets/dist/ods-widgets.js"></script>
+</body>
+
 </html>
