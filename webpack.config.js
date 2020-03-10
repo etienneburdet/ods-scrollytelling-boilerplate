@@ -1,6 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {
+  CleanWebpackPlugin
+} = require('clean-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -11,7 +13,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: 'ODS Minimal template',
-      template: 'index.html'
+      template: 'index.html'
     }),
   ],
   devtool: 'inline-source-map',
@@ -27,13 +29,20 @@ module.exports = {
   },
   module: {
     rules: [{
-      test: /\.s[ac]ss$/i,
-      use: [
-        'style-loader',
-        'css-loader',
-        'sass-loader'
-      ],
-    }, ],
+        test: /\.s[ac]ss$/i,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader'
+        ],
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          'file-loader',
+        ],
+      },
+    ],
   },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),

@@ -5,14 +5,16 @@
   <title>ODS Widgets Minimal Boilerplate</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 
 <body>
+  <div class="jumbotron mb-0 text-center text-light" id="title-hero">
+    <h1>Les grandes dates d'Issy-les-Moulineaux</h1>
+    <h5>Une histoire tout à fait fascinante et scrollisante</h5>
+  </div>
   <div class="container-fluid" ng-app="ods-widgets">
 
-    <!-- Your code goes here! -->
     <ods-dataset-context context="ctx" ctx-domain="discovery.opendatasoft.com" ctx-dataset="les-grandes-dates-dissy-les-moulineaux">
 
       {{ ctx.parameters['sort'] = 'annee' ; "" }}
@@ -23,7 +25,8 @@
 
         <div class="timeline-img" style=""></div>
 
-        <div class="timeline-content timeline-card">
+        <div class="timeline-content timeline-card my-2"
+          data-aos="{{ $odd ? 'fade-left' : 'fade-right' }}">
           <div class="timeline-img-header" ng-class="{'no-img' : !item.fields.imagecsv}" style="{{ 'background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0, .4)), url(' + url + ') center center no-repeat;
                   background-size: cover;' }}">
             <h2>{{ item.fields.evenement }}</h2>

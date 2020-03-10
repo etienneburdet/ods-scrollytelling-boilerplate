@@ -1,2 +1,8 @@
+// Libs
 @import "ods-widgets.min.css";
-@import "timeline.scss";
+@import "~aos/dist/aos.css";
+@import "~bootstrap";
+
+// Components
+@import "components/timeline.scss";
+@import "components/title.scss";
