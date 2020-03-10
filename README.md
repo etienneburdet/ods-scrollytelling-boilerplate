@@ -3,7 +3,7 @@ To install and run :
 
 ```
 mkdir my-project
-git clone 
+git clone git@github.com:etienneburdet/ods-minimal-boilerplate.git
 cd my-project
 yarn
 yarn dev
