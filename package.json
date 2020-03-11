@@ -16,6 +16,8 @@
     "etiennes-ods-widgets": "^0.0.3",
     "html-webpack-plugin": "^3.2.0",
     "jquery": "^3.4.1",
+    "less": "^3.11.1",
+    "less-loader": "^5.0.0",
     "moment": "^2.18.1",
     "node-sass": "^4.13.1",
     "npm": "^6.14.2",
