@@ -13,7 +13,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: 'ODS Minimal template',
-      template: 'index.html'
+      template: 'public/index.html'
     }),
   ],
   devtool: 'inline-source-map',
