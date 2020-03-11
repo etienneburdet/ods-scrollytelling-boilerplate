@@ -1,4 +1,5 @@
 import mapboxgl from 'mapbox-gl'
+import scrollama from 'scrollama'
 
 export default (config) => {
 
