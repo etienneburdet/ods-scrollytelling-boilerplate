@@ -1,6 +1,13 @@
 const storyConfig = {
-  domain: 'public.opendatasoft.com',
-  dataset: 'jcdecaux_bike_data',
+  style: 'mapbox://styles/branigan/cjzsvonse027m1co4nkxp13b3',
+  accessToken: 'pk.eyJ1IjoibWJ4c29sdXRpb25zIiwiYSI6ImNrMm01aG9hdTBlZGwzbXQ1ZXVrNHNmejAifQ.QHQA0N6XPWddCXtvoODHZg',
+  showMarkers: false,
+  theme: 'light',
+  alignment: 'right',
+  title: '',
+  subtitle: '',
+  byline: '',
+  footer: '',
   chapters: [{
       id: 'phl',
       title: 'Philadelphia Bicycle Infrastructure',

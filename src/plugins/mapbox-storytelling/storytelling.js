@@ -120,16 +120,16 @@ export default (config) => {
     }
   }
 
-  const map = new mapboxgl.Map({
-    container: 'map',
-    style: config.style,
-    center: config.chapters[0].location.center,
-    zoom: config.chapters[0].location.zoom,
-    bearing: config.chapters[0].location.bearing,
-    pitch: config.chapters[0].location.pitch,
-    scrollZoom: false,
-    transformRequest: transformRequest
-  });
+  // const map = new mapboxgl.Map({
+  //   container: 'map',
+  //   style: config.style,
+  //   center: config.chapters[0].location.center,
+  //   zoom: config.chapters[0].location.zoom,
+  //   bearing: config.chapters[0].location.bearing,
+  //   pitch: config.chapters[0].location.pitch,
+  //   scrollZoom: false,
+  //   transformRequest: transformRequest
+  // });
 
   const marker = new mapboxgl.Marker();
   if (config.showMarkers) {
