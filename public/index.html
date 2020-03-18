@@ -8,7 +8,14 @@
 </head>
 
 <body>
+  <div class="container-fluid" ng-app="ods-widgets">
 
+    <!-- Your code goes here! -->
+    <ods-dataset-context context="cases" cases-domain="https://analisis.datosabiertos.jcyl.es" cases-dataset=" situacion-epidemiologica-coronavirus-en-castilla-y-leon ">
+      <ods-map context="cases"></ods-map>
+    </ods-dataset-context>
+
+  </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-sanitize.min.js"></script>
