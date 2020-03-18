@@ -9,7 +9,103 @@
 
 <body>
   <div class="container-fluid" ng-app="ods-widgets">
+    <h1>COVID-19 epidemiliogic status in Castilla y León (last update 17/03/2020)</h1>
+    <div class="insights">
+      <div id="confirmed-cases" class="insight-card">
+        49
+        confirmed cases
+      </div>
+      <div id="new-cases" class="insight-card">
+        49
+        confirmed new-cases
+      </div>
+      <div id="hospitalized" class="insight-card">
+        49
+        hospitalized
+      </div>
+      <div id="hospitalized-uci" class="insight-card">
+        49
+        hospitalized UCI
+      </div>
+      <div id="Altas" class="insight-card">
+        49
+        Altas
+      </div>
+      <div id="fatalities" class="insight-card">
+        49
+        Fatalities
+      </div>
+    </div>
 
+    <div class="summary-table">
+      <table>
+        <thead>
+          <th>Region</th>
+          <th>Confirmed</th>
+          <th>New</th>
+          <th>hospitalized</th>
+          <th>hospitalized UCI</th>
+          <th>Altas</th>
+          <th>Fatalities</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Lyon</td>
+            <td>42</td>
+            <td>42</td>
+            <td>42</td>
+            <td>42</td>
+            <td>42</td>
+            <td>42</td>
+          </tr>
+          <tr>
+            <td>Paris</td>
+            <td>42</td>
+            <td>42</td>
+            <td>42</td>
+            <td>42</td>
+            <td>42</td>
+            <td>42</td>
+          </tr>
+          <tr>
+            <td>Tours</td>
+            <td>42</td>
+            <td>42</td>
+            <td>42</td>
+            <td>42</td>
+            <td>42</td>
+            <td>42</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <!-- Your code goes here! -->
     <ods-dataset-context context="cases" cases-domain="https://analisis.datosabiertos.jcyl.es" cases-dataset=" situacion-epidemiologica-coronavirus-en-castilla-y-leon ">
       <ods-map context="cases"></ods-map>
