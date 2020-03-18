@@ -10,117 +10,109 @@
 </head>
 
 <body>
-  <div class="container-fluid" ng-app="ods-widgets">
+  <div class="container" ng-app="ods-widgets">
     <h1>COVID-19 epidemiliogic status in Castilla y León (last update 17/03/2020)</h1>
 
     <ods-dataset-context context="cases" cases-domain="https://analisis.datosabiertos.jcyl.es" cases-dataset=" situacion-epidemiologica-coronavirus-en-castilla-y-leon ">
-    <div class="row">
-      <div id="confirmed-cases" class="insight-card col-3">
-        49
-        confirmed cases
+      <div class="row justify-content-around">
+        <div id="confirmed-cases" class="insight-card col-xs-3">
+          <p>49</p>
+          confirmed cases
+        </div>
+        <div id="new-cases" class="insight-card col-xs-3">
+          <p>49</p>
+          confirmed new-cases
+        </div>
+        <div id="hospitalized" class="insight-card col-xs-3">
+          <p>49</p>
+          hospitalized
+        </div>
+        <div id="hospitalized-uci" class="insight-card col-xs-3">
+          <p>49</p>
+          hospitalized UCI
+        </div>
+        <div id="Altas" class="insight-card col-xs-3">
+          <p>49</p>
+          Altas
+        </div>
+        <div id="fatalities" class="insight-card col-xs-3">
+          <p>49</p>
+          Fatalities
+        </div>
       </div>
-      <div id="new-cases" class="insight-card col-3">
-        49
-        confirmed new-cases
-      </div>
-      <div id="hospitalized" class="insight-card col-3">
-        49
-        hospitalized
-      </div>
-      <div id="hospitalized-uci" class="insight-card col-3">
-        49
-        hospitalized UCI
-      </div>
-      <div id="Altas" class="insight-card col-3">
-        49
-        Altas
-      </div>
-      <div id="fatalities" class="insight-card col-3">
-        49
-        Fatalities
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="col-6">
-        <ods-map context="cases"></ods-map>
+      <div class="row">
+        <div class="col-xs-6">
+          <ods-map context="cases"></ods-map>
+        </div>
+        <div class="col-xs-6">
+          <ods-map context="cases"></ods-map>
+        </div>
       </div>
-      <div class="col-6">
-        <ods-map context="cases"></ods-map>
+
+      <div class="row">
+        <table class="summary-table">
+          <thead>
+            <th>Region</th>
+            <th>Confirmed</th>
+            <th>New</th>
+            <th>hospitalized</th>
+            <th>hospitalized UCI</th>
+            <th>Altas</th>
+            <th>Fatalities</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Lyon</td>
+              <td>42</td>
+              <td>42</td>
+              <td>42</td>
+              <td>42</td>
+              <td>42</td>
+              <td>42</td>
+            </tr>
+            <tr>
+              <td>Paris</td>
+              <td>42</td>
+              <td>42</td>
+              <td>42</td>
+              <td>42</td>
+              <td>42</td>
+              <td>42</td>
+            </tr>
+            <tr>
+              <td>Tours</td>
+              <td>42</td>
+              <td>42</td>
+              <td>42</td>
+              <td>42</td>
+              <td>42</td>
+              <td>42</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
-
-    <div class="row summary-table">
-      <table>
-        <thead>
-          <th>Region</th>
-          <th>Confirmed</th>
-          <th>New</th>
-          <th>hospitalized</th>
-          <th>hospitalized UCI</th>
-          <th>Altas</th>
-          <th>Fatalities</th>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Lyon</td>
-            <td>42</td>
-            <td>42</td>
-            <td>42</td>
-            <td>42</td>
-            <td>42</td>
-            <td>42</td>
-          </tr>
-          <tr>
-            <td>Paris</td>
-            <td>42</td>
-            <td>42</td>
-            <td>42</td>
-            <td>42</td>
-            <td>42</td>
-            <td>42</td>
-          </tr>
-          <tr>
-            <td>Tours</td>
-            <td>42</td>
-            <td>42</td>
-            <td>42</td>
-            <td>42</td>
-            <td>42</td>
-            <td>42</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <!-- Your code goes here! -->
-
+      <!-- Your code goes here! -->
+      <div class="row">
+        <div class="col-xs-6">
+          <ods-chart>
+            <ods-chart-query  timescale="day" context="cases" field-x="fecha">
+              <ods-chart-serie expression-y="casos_confirmados" chart-type="spline">
+              </ods-chart-serie>
+            </ods-chart-query>
+          </ods-chart>
+        </div>
+        <div class="col-xs-6"></div>
+        <div class="col-xs-6">
+          <ods-chart>
+            <ods-chart-query  timescale="day" context="cases" field-x="fecha">
+              <ods-chart-serie expression-y="nuevos_positivos" chart-type="bar">
+              </ods-chart-serie>
+            </ods-chart-query>
+          </ods-chart>
+        </div>
+        <div class="col-xs-6"></div>
+      </div>
     </ods-dataset-context>
 
   </div>

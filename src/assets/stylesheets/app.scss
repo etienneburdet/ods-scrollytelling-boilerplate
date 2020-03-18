@@ -1,0 +1,16 @@
+.summary-table {
+  table-layout: fixed;
+  width: 100%;
+  margin: 55px;
+}
+
+.insight-card {
+  padding: 13px;
+  margin: 13px;
+  border-top: 5px solid black;
+}
+
+.justify-content-around {
+  display: flex;
+  justify-content: space-around;
+}
