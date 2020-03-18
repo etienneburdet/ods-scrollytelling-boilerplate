@@ -1,5 +1,5 @@
 $primary: #142e7b;
-$secondary: rgb(107, 107, 107);
+$light: #f6f8fb;
 
 .summary-table {
   table-layout: fixed;
@@ -9,8 +9,8 @@ $secondary: rgb(107, 107, 107);
 }
 
 .summary-table thead {
-  background: #f6f8fb;
-  color: #142e7b;
+  background: $light;
+  color: $primary;
 }
 
 
@@ -28,12 +28,21 @@ th {
   text-align: justify;
 }
 
+.sticky-content {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: $primary;
+    color: white;
+    padding: 3rem 20px;
+}
+
 .text-primary {
   color: $primary;
 }
 
-.text-secondary {
-  color: $secondary;
+.text-light {
+  color: $light;
 }
 
 .justify-content-around {

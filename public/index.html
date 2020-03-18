@@ -11,17 +11,20 @@
 
 <body>
   <div class="container" ng-app="ods-widgets">
-    <h1>COVID-19 epidemiliogic status in Castilla y León (last update 17/03/2020)</h1>
-
+    <section class="sticky-content">
+      <h2>
+        COVID-19 epidemiliogic status in Castilla y León (last update 17/03/2020)
+      </h2>
+    </section>
     <ods-dataset-context context="cases" cases-domain="https://analisis.datosabiertos.jcyl.es" cases-dataset=" situacion-epidemiologica-coronavirus-en-castilla-y-leon ">
       <div class="row justify-content-around">
         <div id="confirmed-cases" class="insight-card col-xs-3">
           <h3>49</h3>
-          <p class="text-secondary">confirmed cases</p>
+          <p class="text-light">confirmed cases</p>
         </div>
         <div id="new-cases" class="insight-card col-xs-3">
           <h3>49</h3>
-          <p class="text-secondary">confirmed new-cases</p>
+          <p class="text-light">confirmed new-cases</p>
         </div>
         <div id="hospitalized" class="insight-card col-xs-3">
           <h3>49</h3>
@@ -29,15 +32,15 @@
         </div>
         <div id="hospitalized-uci" class="insight-card col-xs-3">
           <h3>49</h3>
-          <p class="text-secondary">hospitalized UCI</p>
+          <p class="text-light">hospitalized UCI</p>
         </div>
         <div id="Altas" class="insight-card col-xs-3">
           <h3>49</h3>
-          <p class="text-secondary">Altas</p>
+          <p class="text-light">Altas</p>
         </div>
         <div id="fatalities" class="insight-card col-xs-3">
           <h3>49</h3>
-          <p class="text-secondary">Fatalities</p>
+          <p class="text-light">Fatalities</p>
         </div>
       </div>
 
