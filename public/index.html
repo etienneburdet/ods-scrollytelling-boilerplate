@@ -16,28 +16,28 @@
     <ods-dataset-context context="cases" cases-domain="https://analisis.datosabiertos.jcyl.es" cases-dataset=" situacion-epidemiologica-coronavirus-en-castilla-y-leon ">
       <div class="row justify-content-around">
         <div id="confirmed-cases" class="insight-card col-xs-3">
-          <p>49</p>
-          confirmed cases
+          <h3>49</h3>
+          <p class="text-secondary">confirmed cases</p>
         </div>
         <div id="new-cases" class="insight-card col-xs-3">
-          <p>49</p>
-          confirmed new-cases
+          <h3>49</h3>
+          <p class="text-secondary">confirmed new-cases</p>
         </div>
         <div id="hospitalized" class="insight-card col-xs-3">
-          <p>49</p>
+          <h3>49</h3>
           hospitalized
         </div>
         <div id="hospitalized-uci" class="insight-card col-xs-3">
-          <p>49</p>
-          hospitalized UCI
+          <h3>49</h3>
+          <p class="text-secondary">hospitalized UCI</p>
         </div>
         <div id="Altas" class="insight-card col-xs-3">
-          <p>49</p>
-          Altas
+          <h3>49</h3>
+          <p class="text-secondary">Altas</p>
         </div>
         <div id="fatalities" class="insight-card col-xs-3">
-          <p>49</p>
-          Fatalities
+          <h3>49</h3>
+          <p class="text-secondary">Fatalities</p>
         </div>
       </div>
 
@@ -51,52 +51,54 @@
       </div>
 
       <div class="row">
-        <table class="summary-table">
-          <thead>
-            <th>Region</th>
-            <th>Confirmed</th>
-            <th>New</th>
-            <th>hospitalized</th>
-            <th>hospitalized UCI</th>
-            <th>Altas</th>
-            <th>Fatalities</th>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Lyon</td>
-              <td>42</td>
-              <td>42</td>
-              <td>42</td>
-              <td>42</td>
-              <td>42</td>
-              <td>42</td>
-            </tr>
-            <tr>
-              <td>Paris</td>
-              <td>42</td>
-              <td>42</td>
-              <td>42</td>
-              <td>42</td>
-              <td>42</td>
-              <td>42</td>
-            </tr>
-            <tr>
-              <td>Tours</td>
-              <td>42</td>
-              <td>42</td>
-              <td>42</td>
-              <td>42</td>
-              <td>42</td>
-              <td>42</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="col-xs-12">
+          <table class="summary-table">
+            <thead>
+              <th>Region</th>
+              <th>Confirmed</th>
+              <th>New</th>
+              <th>hospitalized</th>
+              <th>hospitalized UCI</th>
+              <th>Altas</th>
+              <th>Fatalities</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Lyon</td>
+                <td>42</td>
+                <td>42</td>
+                <td>42</td>
+                <td>42</td>
+                <td>42</td>
+                <td>42</td>
+              </tr>
+              <tr>
+                <td>Paris</td>
+                <td>42</td>
+                <td>42</td>
+                <td>42</td>
+                <td>42</td>
+                <td>42</td>
+                <td>42</td>
+              </tr>
+              <tr>
+                <td>Tours</td>
+                <td>42</td>
+                <td>42</td>
+                <td>42</td>
+                <td>42</td>
+                <td>42</td>
+                <td>42</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <!-- Your code goes here! -->
       <div class="row">
         <div class="col-xs-6">
           <ods-chart>
-            <ods-chart-query  timescale="day" context="cases" field-x="fecha">
+            <ods-chart-query timescale="day" context="cases" field-x="fecha">
               <ods-chart-serie expression-y="casos_confirmados" chart-type="spline">
               </ods-chart-serie>
             </ods-chart-query>
@@ -105,7 +107,7 @@
         <div class="col-xs-6"></div>
         <div class="col-xs-6">
           <ods-chart>
-            <ods-chart-query  timescale="day" context="cases" field-x="fecha">
+            <ods-chart-query timescale="day" context="cases" field-x="fecha">
               <ods-chart-serie expression-y="nuevos_positivos" chart-type="bar">
               </ods-chart-serie>
             </ods-chart-query>

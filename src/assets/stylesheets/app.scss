@@ -1,13 +1,39 @@
+$primary: #142e7b;
+$secondary: rgb(107, 107, 107);
+
 .summary-table {
   table-layout: fixed;
+  white-space: nowrap;
   width: 100%;
-  margin: 55px;
+  margin: 55px 0px;
+}
+
+.summary-table thead {
+  background: #f6f8fb;
+  color: #142e7b;
+}
+
+
+.summary-table td,
+th {
+  padding: 1rem;
+  border-top: 1px solid;
+  border-color: #dee5ef;
 }
 
 .insight-card {
-  padding: 13px;
+  padding: 5px 0;
   margin: 13px;
-  border-top: 5px solid black;
+  border-top: 3px solid $primary;
+  text-align: justify;
+}
+
+.text-primary {
+  color: $primary;
+}
+
+.text-secondary {
+  color: $secondary;
 }
 
 .justify-content-around {
