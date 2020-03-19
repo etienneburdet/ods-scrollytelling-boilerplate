@@ -44,8 +44,9 @@
         </div>
       </div>
 
-      <div class="row" ng-init="tabselector = 'firsttab'">
-        <div class="tabs col-xs-12 justify-content-left">
+      <div class="row feature-box" ng-init="tabselector = 'firsttab'">
+        <div class="col-xs-12">
+          <div class="tabs">
             <a class="tab" ng-click="tabselector = 'firsttab'" ng-class="{'activetab' : tabselector == 'firsttab'}">
               New cases
             </a>
@@ -55,22 +56,21 @@
             <a class="tab" ng-click="tabselector = 'thirdtab'" ng-class="{'activetab' : tabselector == 'thirdtab'}">
               Fatalities
             </a>
-        </div>
-        <div class="col-xs-12" ng-if="tabselector == 'firsttab'">
-          <ods-map context="cases"></ods-map>
-        </div>
-        <div class="col-xs-12">
-          <ods-map context="cases" ng-if="tabselector == 'secondtab'"></ods-map>
-        </div>
-        <div class="col-xs-12">
-          <ods-map context="cases" ng-if="tabselector == 'thirdtab'"></ods-map>
+          </div>
+          <div class="col-xs-12" ng-if="tabselector == 'firsttab'">
+            <ods-map context="cases"></ods-map>
+          </div>
+          <div class="col-xs-12">
+            <ods-map context="cases" ng-if="tabselector == 'secondtab'"></ods-map>
+          </div>
+          <div class="col-xs-12">
+            <ods-map context="cases" ng-if="tabselector == 'thirdtab'"></ods-map>
+          </div>
         </div>
       </div>
 
-      <div class="row" ng-init="row-selector = {}">
+      <div class="row feature-box" ng-init="row-selector = {}">
         <div class="col-xs-12">
-
-
           <table class="summary-table">
             <thead>
               <th>Region</th>
@@ -113,7 +113,7 @@
           </table>
         </div>
       </div>
-      <div class="row">
+      <div class="row feature-box">
         <div class="col-xs-6">
           <ods-chart>
             <ods-chart-query timescale="day" context="cases" field-x="fecha">
@@ -131,7 +131,6 @@
             </ods-chart-query>
           </ods-chart>
         </div>
-        <div class="col-xs-6"></div>
       </div>
     </ods-dataset-context>
 

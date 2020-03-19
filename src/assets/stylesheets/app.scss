@@ -3,13 +3,25 @@ $primary: #142e7b;
 $light: #f6f8fb;
 $secondary: #898D92;
 
-/* Table design */
+/* General settings */
+body {
+  background-color: $light;
+}
 
+.feature-box {
+  margin: 21px 0px;
+  padding: 13px;
+  background: white;
+  border-radius: 4px;
+  background-color: #ffffff;
+  background-size: cover;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.13);
+}
+/* Table design */
 .summary-table {
   table-layout: fixed;
   white-space: nowrap;
   width: 100%;
-  margin: 55px 0px;
 }
 
 .summary-table thead {
@@ -35,38 +47,48 @@ th {
 }
 /* cards */
 .insight-card {
-  padding: 5px 0;
   margin: 13px;
-  border-top: 3px solid $primary;
-  text-align: justify;
+  border: 1px dotted $primary;
+  border-radius: 4px;
+  color: #565656;
+  text-decoration: rgb(86, 86, 86);
+  box-shadow: 0px 0px 0px rgba(0,0,0,0);
+  text-align: center;
 }
-
 /* tabs */
 .tabs {
-   margin: 1em; /* Adds lots of space around the tabs, to avoid the border to fall into the tab content area */
+  margin: 1em;
+  /* Adds lots of space around the tabs, to avoid the border to fall into the tab content area */
 }
+
 .tab {
-   padding: 10px 20px; /* Gives some space to tab titles */
-   color: gray; /* Colors the text in gray */
+  padding: 10px 20px;
+  /* Gives some space to tab titles */
+  color: gray;
+  /* Colors the text in gray */
 }
 /* Only visible when the mouse is on a tab title */
 .tab:hover {
-   color: black; /* Colors the text in black to highlight the possible selection */
-   text-decoration: none; /* Removes the hyperlink underline style */
-}
-.activetab {
-   color: black; /* Colors the text in black */
-   border-bottom: 3px solid #2d2d2d; /* Underlines the text with a bold dark border */
+  color: black;
+  /* Colors the text in black to highlight the possible selection */
+  text-decoration: none;
+  /* Removes the hyperlink underline style */
 }
 
+.activetab {
+  color: black;
+  /* Colors the text in black */
+  border-bottom: 3px solid #2d2d2d;
+  /* Underlines the text with a bold dark border */
+}
 /* Utilities */
 .sticky-content {
-    // position: sticky;
-    top: 0;
-    z-index: 10;
-    background-color: $primary;
-    color: white;
-    padding: 3rem 20px;
+  // position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: $primary;
+  color: white;
+  padding: 3rem 20px;
 }
 
 .text-primary {
