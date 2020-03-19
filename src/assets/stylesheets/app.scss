@@ -1,11 +1,11 @@
 /* Theme variables */
-$primary: #142e7b;
-$light: #f6f8fb;
-$secondary: #898D92;
+// #142e7b: #142e7b;
+// #f6f8fb: #f6f8fb;
+// #898D92: #898D92;
 
 /* General settings */
 body {
-  background-color: $light;
+  background-color: #f6f8fb;
 }
 
 .feature-box {
@@ -22,11 +22,12 @@ body {
   table-layout: fixed;
   white-space: nowrap;
   width: 100%;
+  margin-bottom: 21px;
 }
 
 .summary-table thead {
-  background: $light;
-  color: $primary;
+  background: #f6f8fb;
+  color: #142e7b;
 }
 
 .summary-table td,
@@ -38,17 +39,18 @@ th {
 
 .summary-table tr {
   &:hover {
-    background: $light;
+    background: #f6f8fb;
   }
 }
 
-.selected {
-  background: $light;
+.summary-table .selected {
+  background: #f6f8fb;
 }
+
 /* cards */
 .insight-card {
   margin: 13px;
-  border: 1px dotted $primary;
+  border: 1px dotted #142e7b;
   border-radius: 4px;
   color: #565656;
   text-decoration: rgb(86, 86, 86);
@@ -81,22 +83,27 @@ th {
   border-bottom: 3px solid #2d2d2d;
   /* Underlines the text with a bold dark border */
 }
+
 /* Utilities */
-.sticky-content {
-  // position: sticky;
-  top: 0;
-  z-index: 10;
-  background-color: $primary;
-  color: white;
-  padding: 3rem 20px;
+
+.mb-3 {
+  margin-bottom: 34px;
 }
 
 .text-primary {
-  color: $primary;
+  color: #142e7b;
+}
+
+.text-highlight {
+  color: #00c7b1;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .text-light {
-  color: $secondary;
+  color: #898D92;
 }
 
 .justify-content-around {

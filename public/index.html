@@ -12,34 +12,34 @@
 <body>
   <div class="container" ng-app="ods-widgets">
     <section class="sticky-content">
-      <h2>
+      <h2 class="text-primary text-center mb-3">
         COVID-19 epidemiliogic status in Castilla y León (last update 17/03/2020)
       </h2>
     </section>
     <ods-dataset-context context="cases" cases-domain="https://analisis.datosabiertos.jcyl.es" cases-dataset=" situacion-epidemiologica-coronavirus-en-castilla-y-leon ">
       <div class="row justify-content-around">
         <div id="confirmed-cases" class="insight-card col-xs-3">
-          <h3>49</h3>
+          <h3 class="text-highlight">49</h3>
           <p class="text-light">confirmed cases</p>
         </div>
         <div id="new-cases" class="insight-card col-xs-3">
-          <h3>49</h3>
+          <h3 class="text-highlight">49</h3>
           <p class="text-light">confirmed new-cases</p>
         </div>
         <div id="hospitalized" class="insight-card col-xs-3">
-          <h3>49</h3>
+          <h3 class="text-highlight">49</h3>
           <p class="text-light">hospitalized</p>
         </div>
         <div id="hospitalized-uci" class="insight-card col-xs-3">
-          <h3>49</h3>
+          <h3 class="text-highlight">49</h3>
           <p class="text-light">hospitalized UCI</p>
         </div>
         <div id="Altas" class="insight-card col-xs-3">
-          <h3>49</h3>
+          <h3 class="text-highlight">49</h3>
           <p class="text-light">Altas</p>
         </div>
         <div id="fatalities" class="insight-card col-xs-3">
-          <h3>49</h3>
+          <h3 class="text-highlight">49</h3>
           <p class="text-light">Fatalities</p>
         </div>
       </div>
@@ -111,26 +111,26 @@
               </tr>
             </tbody>
           </table>
+          <div class="row feature-box">
+            <div class="col-xs-6">
+              <ods-chart>
+                <ods-chart-query timescale="day" context="cases" field-x="fecha">
+                  <ods-chart-serie expression-y="casos_confirmados" chart-type="spline">
+                  </ods-chart-serie>
+                </ods-chart-query>
+              </ods-chart>
+            </div>
+            <div class="col-xs-6"></div>
+            <div class="col-xs-6">
+              <ods-chart>
+                <ods-chart-query timescale="day" context="cases" field-x="fecha">
+                  <ods-chart-serie expression-y="nuevos_positivos" chart-type="bar">
+                  </ods-chart-serie>
+                </ods-chart-query>
+              </ods-chart>
+            </div>
         </div>
       </div>
-      <div class="row feature-box">
-        <div class="col-xs-6">
-          <ods-chart>
-            <ods-chart-query timescale="day" context="cases" field-x="fecha">
-              <ods-chart-serie expression-y="casos_confirmados" chart-type="spline">
-              </ods-chart-serie>
-            </ods-chart-query>
-          </ods-chart>
-        </div>
-        <div class="col-xs-6"></div>
-        <div class="col-xs-6">
-          <ods-chart>
-            <ods-chart-query timescale="day" context="cases" field-x="fecha">
-              <ods-chart-serie expression-y="nuevos_positivos" chart-type="bar">
-              </ods-chart-serie>
-            </ods-chart-query>
-          </ods-chart>
-        </div>
       </div>
     </ods-dataset-context>
 
