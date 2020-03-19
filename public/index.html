@@ -28,7 +28,7 @@
         </div>
         <div id="hospitalized" class="insight-card col-xs-3">
           <h3>49</h3>
-          hospitalized
+          <p class="text-light">hospitalized</p>
         </div>
         <div id="hospitalized-uci" class="insight-card col-xs-3">
           <h3>49</h3>
@@ -44,12 +44,23 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-xs-6">
+      <div class="row" ng-init="tabselector = 'firsttab'">
+        <div class="tabs col-xs-12 justify-content-left">
+            <a class="tab" ng-click="tabselector = 'firsttab'" ng-class="{'activetab' : tabselector == 'firsttab'}"><i class="fa fa-list-ol" aria-hidden="true"></i>
+              Full list</a>
+            <a class="tab" ng-click="tabselector = 'secondtab'" ng-class="{'activetab' : tabselector == 'secondtab'}"><i class="fa fa-map" aria-hidden="true"></i>
+              World map</a>
+            <a class="tab" ng-click="tabselector = 'thirdtab'" ng-class="{'activetab' : tabselector == 'thirdtab'}"><i class="fa fa-area-chart" aria-hidden="true"></i>
+              Top 20 ranking</a>
+        </div>
+        <div class="col-xs-12" ng-if="tabselector == 'firsttab'">
           <ods-map context="cases"></ods-map>
         </div>
-        <div class="col-xs-6">
-          <ods-map context="cases"></ods-map>
+        <div class="col-xs-12">
+          <ods-map context="cases" ng-if="tabselector == 'secondtab'"></ods-map>
+        </div>
+        <div class="col-xs-12">
+          <ods-map context="cases" ng-if="tabselector == 'thirdtab'"></ods-map>
         </div>
       </div>
 

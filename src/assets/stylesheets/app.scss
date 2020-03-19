@@ -1,5 +1,9 @@
+/* Theme variables */
 $primary: #142e7b;
 $light: #f6f8fb;
+$secondary: #898D92;
+
+/* Table design */
 
 .summary-table {
   table-layout: fixed;
@@ -13,7 +17,6 @@ $light: #f6f8fb;
   color: $primary;
 }
 
-
 .summary-table td,
 th {
   padding: 1rem;
@@ -21,6 +24,13 @@ th {
   border-color: #dee5ef;
 }
 
+.summary-table tr, .selected-row {
+  &:hover {
+    background: $light;
+  }
+}
+
+/* cards */
 .insight-card {
   padding: 5px 0;
   margin: 13px;
@@ -28,8 +38,27 @@ th {
   text-align: justify;
 }
 
+/* tabs */
+.tabs {
+   margin: 1em; /* Adds lots of space around the tabs, to avoid the border to fall into the tab content area */
+}
+.tab {
+   padding: 10px 20px; /* Gives some space to tab titles */
+   color: gray; /* Colors the text in gray */
+}
+/* Only visible when the mouse is on a tab title */
+.tab:hover {
+   color: black; /* Colors the text in black to highlight the possible selection */
+   text-decoration: none; /* Removes the hyperlink underline style */
+}
+.activetab {
+   color: black; /* Colors the text in black */
+   border-bottom: 3px solid #2d2d2d; /* Underlines the text with a bold dark border */
+}
+
+/* Utilities */
 .sticky-content {
-    position: sticky;
+    // position: sticky;
     top: 0;
     z-index: 10;
     background-color: $primary;
@@ -42,10 +71,15 @@ th {
 }
 
 .text-light {
-  color: $light;
+  color: $secondary;
 }
 
 .justify-content-around {
   display: flex;
   justify-content: space-around;
+}
+
+.justify-content-left {
+  display: flex;
+  justify-content: flex-start;
 }
