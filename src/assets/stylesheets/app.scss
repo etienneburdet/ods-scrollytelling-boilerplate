@@ -24,12 +24,15 @@ th {
   border-color: #dee5ef;
 }
 
-.summary-table tr, .selected-row {
+.summary-table tr {
   &:hover {
     background: $light;
   }
 }
 
+.selected {
+  background: $light;
+}
 /* cards */
 .insight-card {
   padding: 5px 0;
