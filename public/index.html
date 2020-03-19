@@ -12,11 +12,11 @@
 <body>
   <div class="container" ng-app="ods-widgets">
     <section class="sticky-content">
-      <h2 class="text-primary text-center mb-3">
+      <h2 class="text-primary text-center mb-4">
         COVID-19 epidemiliogic status in Castilla y León (last update 17/03/2020)
       </h2>
     </section>
-    <ods-dataset-context context="cases" cases-domain="https://analisis.datosabiertos.jcyl.es" cases-dataset=" situacion-epidemiologica-coronavirus-en-castilla-y-leon ">
+    <ods-dataset-context context="cases" cases-domain="https://analisis.datosabiertos.jcyl.es" cases-dataset="situacion-epidemiologica-coronavirus-en-castilla-y-leon">
       <div class="row justify-content-around">
         <div id="confirmed-cases" class="insight-card col-xs-3">
           <h3 class="text-highlight">49</h3>
@@ -58,7 +58,9 @@
             </a>
           </div>
           <div class="col-xs-12" ng-if="tabselector == 'firsttab'">
-            <ods-map context="cases"></ods-map>
+            <ods-map no-refit="true" scroll-wheel-zoom="false" display-control="false">
+              <ods-map-layer context="cases" display="choropleth" function="AVG"></ods-map-layer>
+            </ods-map>
           </div>
           <div class="col-xs-12">
             <ods-map context="cases" ng-if="tabselector == 'secondtab'"></ods-map>
