@@ -45,7 +45,7 @@
         </div>
       </div>
 
-      <div class="row feature-box" ng-init="tabselector = 'firsttab'">
+      <!-- <div class="row feature-box" ng-init="tabselector = 'firsttab'">
         <div class="col-xs-12">
           <div class="tabs">
             <a class="tab" ng-click="tabselector = 'firsttab'" ng-class="{'activetab' : tabselector == 'firsttab'}">
@@ -75,108 +75,46 @@
                   </span>
                 </div>
               </div>
-                <ods-map basemap="jawg.light" no-refit="false" scroll-wheel-zoom="false" display-control="false" display-control-single-layer="true" toolbar-fullscreen="true" toolbar-drawing="false">
+                <ods-map basemap="jawg.light" no-refit="false" scroll-wheel-zoom="false" display-control="false" toolbar-drawing="false">
                   <ods-map-layer context="regions" color-categories="colors" color-by-field="cod_ine_prov" color-categories-other="lightgrey" display="categories" shape-opacity="0.7" tooltip-disabled="true"></ods-map-layer>
                 </ods-map>
             </div>
           </div>
           <div class="col-xs-12" ng-if="tabselector == 'secondtab'">
-            <ods-dataset-context context="regions,population"
-
-                     regions-dataset="contours-geographiques-des-regions-2019-copy"
-                     regions-domain="public"
-                     regions-parameters="{'q':'NOT (guadeloupe OR mayotte OR guyane OR martinique OR reunion)'}"
-
-                     population-dataset="population-millesimee-communes-2016"
-                     population-domain="public">
-
-    <div ng-init="colors = {};">
-
-        <div ods-analysis="analyseregions"
-             ods-analysis-context="population"
-             ods-analysis-x="nom_reg"
-             ods-analysis-max="0"
-             ods-analysis-serie-agg="SUM(population_totale)"
-             ods-analysis-sort="agg">
-             {{ analyseregions }}
-            <div ods-subaggregation="analyseregions.results"
-                 ods-subaggregation-serie-maxval="MAX(agg)"
-                 ods-subaggregation-serie-minval="MIN(agg)">
-                <span ng-repeat="i in analyseregions.results">
-                    {{colors[i.x] = "hsl(220,75%," +
-                    (75 - ((i.agg - results[0].minval) / (results[0].maxval - results[0].minval) * 50) | number : 0) + "%,1)"; "" }}
-                </span>
-            </div>
-        </div>
-
-        <div class="map-container"
-             ng-if="(colors|keys).length>0" >
-
-            <ods-map style="height: 698px"
-                     basemap="jawg.light"
-                     no-refit="false" scroll-wheel-zoom="false" display-control="false" display-control-single-layer="true"
-                     toolbar-fullscreen="true" toolbar-drawing="false">
-                <ods-map-layer context="regions"
-                               color-categories="colors"
-                               color-by-field="region"
-                               color-categories-other="lightgrey"
-                               display="categories"
-                               shape-opacity="0.7"
-                               tooltip-disabled="true">
-                </ods-map-layer>
-            </ods-map>
-
-        </div>
-
-    </div>
-
-</ods-dataset-context>
+            <ods-map context="cases" ng-if="tabselector == 'thirdtab'"></ods-map>
           </div>
           <div class="col-xs-12">
             <ods-map context="cases" ng-if="tabselector == 'thirdtab'"></ods-map>
           </div>
         </div>
-      </div>
+      </div> -->
 
-      <!-- <div class="row feature-box" ng-init="row-selector = {}">
+      <div class="row feature-box"
+        ng-init="active_row = {}">
         <div class="col-xs-12">
           <table class="summary-table">
             <thead>
               <th>Region</th>
               <th>Confirmed</th>
-              <th>New</th>
-              <th>hospitalized</th>
-              <th>hospitalized UCI</th>
               <th>Altas</th>
               <th>Fatalities</th>
             </thead>
             <tbody>
-              <tr ng-click="toggle1 = !toggle1" ng-class="{'selected' : toggle1}">
-                <td>Lyon</td>
-                <td>42</td>
-                <td>42</td>
-                <td>42</td>
-                <td>42</td>
-                <td>42</td>
-                <td>42</td>
-              </tr>
-              <tr ng-click="toggle2 = !toggle2" ng-class="{'selected' : toggle2}">
-                <td>Paris</td>
-                <td>42</td>
-                <td>42</td>
-                <td>42</td>
-                <td>42</td>
-                <td>42</td>
-                <td>42</td>
-              </tr>
-              <tr ng-click="toggle3 = !toggle3" ng-class="{'selected' : toggle3}">
-                <td>Tours</td>
-                <td>42</td>
-                <td>42</td>
-                <td>42</td>
-                <td>42</td>
-                <td>42</td>
-                <td>42</td>
+              <tr ods-analysis="sumregion"
+                    ods-analysis-context="cases"
+                    ods-analysis-max="100"
+                    ods-analysis-x="provincia"
+                    ods-analysis-sort="count"
+                    ods-analysis-serie-confirmados="SUM(casos_confirmados)"
+                    ods-analysis-serie-altas="SUM(altas)"
+                    ods-analysis-serie-fallecimientos="SUM(fallecimientos)"
+                    ng-repeat="region in sumregion.results"
+                    ng-click="selected = !selected"
+                    ng-class="{'selected': selected}">
+                <td>{{ region.x }}</td>
+                <td>{{  region.confirmados }}</td>
+                <td>{{  region.altas }}</td>
+                <td>{{  region.fallecimientos }}</td>
               </tr>
             </tbody>
           </table>
@@ -198,7 +136,7 @@
             </ods-chart>
           </div>
         </div>
-      </div> -->
+      </div>
     </ods-dataset-context>
 
   </div>
