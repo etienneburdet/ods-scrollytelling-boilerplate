@@ -16,7 +16,13 @@
         COVID-19 epidemiliogic status in Castilla y León (last update 17/03/2020)
       </h2>
     </section>
-    <ods-dataset-context context="regions,cases" cases-domain="https://analisis.datosabiertos.jcyl.es" cases-dataset="situacion-epidemiologica-coronavirus-en-castilla-y-leon" regions-dataset="limites-provinciales-de-castilla-y-leon-recintos"
+    <ods-dataset-context context="regions, cases, selected"
+      cases-domain="https://analisis.datosabiertos.jcyl.es"
+      cases-dataset="situacion-epidemiologica-coronavirus-en-castilla-y-leon"
+      selected-domain="https://analisis.datosabiertos.jcyl.es"
+      selected-dataset="situacion-epidemiologica-coronavirus-en-castilla-y-leon"
+      selected-parameters="{'disjunctive.provincia':true}"
+      regions-dataset="limites-provinciales-de-castilla-y-leon-recintos"
       regions-domain="https://analisis.datosabiertos.jcyl.es">
       <div class="row justify-content-around">
         <div id="confirmed-cases" class="insight-card col-xs-3">
@@ -45,7 +51,7 @@
         </div>
       </div>
 
-      <!-- <div class="row feature-box" ng-init="tabselector = 'firsttab'">
+      <div class="row feature-box" ng-init="tabselector = 'firsttab'">
         <div class="col-xs-12">
           <div class="tabs">
             <a class="tab" ng-click="tabselector = 'firsttab'" ng-class="{'activetab' : tabselector == 'firsttab'}">
@@ -70,14 +76,14 @@
                   ods-subaggregation-serie-maxval="MAX(agg)"
                   ods-subaggregation-serie-minval="MIN(agg)">
                   <span ng-repeat="res in analyseregions.results">
-                    {{reg_code = res.x > 9999 ? (res.x | limitTo:2) : (res.x | limitTo:1)}}
+                    {{reg_code = res.x > 9999 ? (res.x | limitTo:2) : (res.x | limitTo:1); ""}}
                     {{colors[reg_code] = "hsl(220,75%," + (75 - ((res.agg - results[0].minval) / (results[0].maxval - results[0].minval) * 50) | number : 0) + "%,1)"; "" }}
                   </span>
                 </div>
               </div>
-                <ods-map basemap="jawg.light" no-refit="false" scroll-wheel-zoom="false" display-control="false" toolbar-drawing="false">
-                  <ods-map-layer context="regions" color-categories="colors" color-by-field="cod_ine_prov" color-categories-other="lightgrey" display="categories" shape-opacity="0.7" tooltip-disabled="true"></ods-map-layer>
-                </ods-map>
+              <ods-map basemap="jawg.light" no-refit="false" scroll-wheel-zoom="false" display-control="false" toolbar-drawing="false">
+                <ods-map-layer context="regions" color-categories="colors" color-by-field="cod_ine_prov" color-categories-other="lightgrey" display="categories" shape-opacity="0.7" tooltip-disabled="true"></ods-map-layer>
+              </ods-map>
             </div>
           </div>
           <div class="col-xs-12" ng-if="tabselector == 'secondtab'">
@@ -87,7 +93,7 @@
             <ods-map context="cases" ng-if="tabselector == 'thirdtab'"></ods-map>
           </div>
         </div>
-      </div> -->
+      </div>
 
       <div class="row feature-box"
         ng-init="active_row = {}">
@@ -98,6 +104,7 @@
               <th>Confirmed</th>
               <th>Altas</th>
               <th>Fatalities</th>
+              <th></th>
             </thead>
             <tbody>
               <tr ods-analysis="sumregion"
@@ -115,12 +122,34 @@
                 <td>{{  region.confirmados }}</td>
                 <td>{{  region.altas }}</td>
                 <td>{{  region.fallecimientos }}</td>
+                <td><input type="checkbox"
+                  ods-toggle-model="selected.parameters"
+                  ods-toggle-key="refine.provincia"
+                  ods-toggle-value="{{ region.x }}">{{ region.x }}</td>
               </tr>
             </tbody>
           </table>
           <div class="col-xs-6">
+            <div ods-results="items" ods-results-context="selected" ods-results-max="0">
+              <ods-catalog-context context="catalog" catalog-domain="https://data.opendatasoft.com" catalog-parameters="{'disjunctive.publisher':true}">
+                <label><input type="checkbox" ods-toggle-model="catalog.parameters" ods-toggle-key="refine.publisher" ods-toggle-value="OpenStreetMap"> OpenStreetMap</label>
+                <label><input type="checkbox" ods-toggle-model="catalog.parameters" ods-toggle-key="refine.publisher" ods-toggle-value="Eurostat"> Eurostat</label>
+                <div ods-results="items" ods-results-context="catalog" ods-results-max="10">
+                  {{items.length}}
+                  <table>
+                    <tr>
+                      <td>Publisher</td>
+                      <td>Dataset</td>
+                    </tr>
+                    <tr ng-repeat="item in items">
+                      <td>{{item.metas.publisher}}</td>
+                      <td>{{item.datasetid}}</td>
+                    </tr>
+                  </table>
+                </div>
+              </ods-catalog-context>
             <ods-chart>
-              <ods-chart-query timescale="day" context="cases" field-x="fecha">
+              <ods-chart-query timescale="day" context="selected" field-x="fecha">
                 <ods-chart-serie expression-y="casos_confirmados" chart-type="spline">
                 </ods-chart-serie>
               </ods-chart-query>
@@ -129,7 +158,7 @@
           <div class="col-xs-6"></div>
           <div class="col-xs-6">
             <ods-chart>
-              <ods-chart-query timescale="day" context="cases" field-x="fecha">
+              <ods-chart-query timescale="day" context="selected-cases" field-x="fecha">
                 <ods-chart-serie expression-y="nuevos_positivos" chart-type="bar">
                 </ods-chart-serie>
               </ods-chart-query>
