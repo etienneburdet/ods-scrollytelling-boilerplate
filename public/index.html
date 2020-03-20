@@ -132,23 +132,26 @@
               </tr>
             </tbody>
           </table>
-          <div class="col-xs-6">
-            <ods-chart>
-              <ods-chart-query timescale="day" context="selected" field-x="fecha">
-                <ods-chart-serie expression-y="casos_confirmados" chart-type="spline">
-                </ods-chart-serie>
+        </div>
+        <div class="col-xs-6">
+          <h4 class="text-primary text-center">Tendencia</h4>
+          <ods-chart timescale="year" single-y-axis="true" scientific-display="false" align-month="true">
+            <ods-chart-query context="selected" field-x="fecha" maxpoints="0" timescale="day">
+              <ods-chart-serie expression-y="casos_confirmados" chart-type="spline" function-y="SUM" label-y="Casos confirmados" color="#00c7b1" scientific-display="true" display-values="true">
+              </ods-chart-serie>
+              <ods-chart-serie expression-y="fallecimientos" chart-type="line" function-y="SUM" label-y="Fallecimientos" color="#fc8d62" scientific-display="true" display-values="true">
+              </ods-chart-serie>
+            </ods-chart-query>
+          </ods-chart>
+        </div>
+        <div class="col-xs-6">
+          <h4 class="text-primary text-center">Incremento diario</h4>
+          <ods-chart timescale="year" align-month="true">
+              <ods-chart-query context="selected" field-x="fecha" maxpoints="0" timescale="day">
+                  <ods-chart-serie expression-y="nuevos_positivos" chart-type="column" function-y="SUM" label-y="Nuevos casos positivos" color="#00c7b1" display-values="true" display-stack-values="false" scientific-display="true">
+                  </ods-chart-serie>
               </ods-chart-query>
-            </ods-chart>
-          </div>
-          <div class="col-xs-6"></div>
-          <div class="col-xs-6">
-            <ods-chart>
-              <ods-chart-query timescale="day" context="selected-cases" field-x="fecha">
-                <ods-chart-serie expression-y="nuevos_positivos" chart-type="bar">
-                </ods-chart-serie>
-              </ods-chart-query>
-            </ods-chart>
-          </div>
+          </ods-chart>
         </div>
       </div>
     </ods-dataset-context>
