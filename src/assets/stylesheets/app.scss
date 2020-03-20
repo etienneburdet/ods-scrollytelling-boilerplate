@@ -29,6 +29,9 @@ body {
 .summary-table td,
 th {
   padding: 1rem;
+}
+
+.summary-table td {
   border-top: 1px solid;
   border-color: #dee5ef;
 }
@@ -37,8 +40,37 @@ th {
     background: #f6f8fb;
 }
 
-.summary-table .selected {
+.summary-table .toggled {
   background: #f6f8fb;
+}
+
+.hidden-checkbox {
+  visibility: hidden;
+}
+
+.fake-checkbox {
+  width: 21px;
+  height: 21px;
+  background: white;
+  border: 1px solid #142e7b;
+  border-radius: 4px;
+  font-weight: normal;
+}
+
+.fake-checkbox:after {
+  content: "\f00c";
+  opacity: 0;
+  font-family: FontAwesome;
+  color: #142e7b;
+  margin-left: 3px;
+}
+
+.hidden-checkbox:checked ~ .fake-checkbox:after {
+  content: "\f00c";
+  opacity: 1;
+  font-family: FontAwesome;
+  color: #142e7b;
+  margin-left: 3px;
 }
 
 /* cards */

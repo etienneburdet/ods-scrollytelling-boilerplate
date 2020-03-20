@@ -104,7 +104,6 @@
               <th>Confirmed</th>
               <th>Altas</th>
               <th>Fatalities</th>
-              <th></th>
             </thead>
             <tbody>
               <tr ods-analysis="sumregion"
@@ -116,38 +115,24 @@
                     ods-analysis-serie-altas="SUM(altas)"
                     ods-analysis-serie-fallecimientos="SUM(fallecimientos)"
                     ng-repeat="region in sumregion.results"
-                    ng-click="selected = !selected"
-                    ng-class="{'selected': selected}">
-                <td>{{ region.x }}</td>
+                    ng-class="{'toggled': toggled}">
+                <td>
+                  <div>
+                    <input id="{{ region.x }}" type="checkbox" class="hidden-checkbox"
+                      ods-toggle-model="$parent.selected.parameters"
+                      ods-toggle-key="refine.provincia"
+                      ods-toggle-value="{{ region.x }}"/>
+                    <label for="{{ region.x }}" class="fake-checkbox" ng-click="toggled = !toggled"></label>
+                    {{ region.x }}
+                  </div>
+                </td>
                 <td>{{  region.confirmados }}</td>
                 <td>{{  region.altas }}</td>
                 <td>{{  region.fallecimientos }}</td>
-                <td><input type="checkbox"
-                  ods-toggle-model="selected.parameters"
-                  ods-toggle-key="refine.provincia"
-                  ods-toggle-value="{{ region.x }}">{{ region.x }}</td>
               </tr>
             </tbody>
           </table>
           <div class="col-xs-6">
-            <div ods-results="items" ods-results-context="selected" ods-results-max="0">
-              <ods-catalog-context context="catalog" catalog-domain="https://data.opendatasoft.com" catalog-parameters="{'disjunctive.publisher':true}">
-                <label><input type="checkbox" ods-toggle-model="catalog.parameters" ods-toggle-key="refine.publisher" ods-toggle-value="OpenStreetMap"> OpenStreetMap</label>
-                <label><input type="checkbox" ods-toggle-model="catalog.parameters" ods-toggle-key="refine.publisher" ods-toggle-value="Eurostat"> Eurostat</label>
-                <div ods-results="items" ods-results-context="catalog" ods-results-max="10">
-                  {{items.length}}
-                  <table>
-                    <tr>
-                      <td>Publisher</td>
-                      <td>Dataset</td>
-                    </tr>
-                    <tr ng-repeat="item in items">
-                      <td>{{item.metas.publisher}}</td>
-                      <td>{{item.datasetid}}</td>
-                    </tr>
-                  </table>
-                </div>
-              </ods-catalog-context>
             <ods-chart>
               <ods-chart-query timescale="day" context="selected" field-x="fecha">
                 <ods-chart-serie expression-y="casos_confirmados" chart-type="spline">
