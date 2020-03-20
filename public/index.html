@@ -24,29 +24,28 @@
       selected-parameters="{'disjunctive.provincia':true}"
       regions-dataset="limites-provinciales-de-castilla-y-leon-recintos"
       regions-domain="https://analisis.datosabiertos.jcyl.es">
-      <div class="row justify-content-around">
-        <div id="confirmed-cases" class="insight-card col-xs-3">
-          <h3 class="text-highlight">49</h3>
+      <div class="row justify-content-around"
+        ods-analysis="totals"
+        ods-analysis-context="cases"
+        ods-analysis-max="0"
+        ods-analysis-serie-confirmados="SUM(casos_confirmados)"
+        ods-analysis-serie-nuevos="SUM(nuevos_positivos)"
+        ods-analysis-serie-altas="SUM(altas)"
+        ods-analysis-serie-fallecimientos="SUM(fallecimientos)">
+        <div  class="insight-card col-xs-3">
+          <h3 class="text-highlight">{{ totals.results[0].confirmados }}</h3>
           <p class="text-light">confirmed cases</p>
         </div>
-        <div id="new-cases" class="insight-card col-xs-3">
-          <h3 class="text-highlight">49</h3>
-          <p class="text-light">confirmed new-cases</p>
+        <div class="insight-card col-xs-3">
+          <h3 class="text-highlight">{{ totals.results[0].nuevos }}</h3>
+          <p class="text-light">confirmed new-cases today</p>
         </div>
-        <div id="hospitalized" class="insight-card col-xs-3">
-          <h3 class="text-highlight">49</h3>
-          <p class="text-light">hospitalized</p>
+        <div class="insight-card col-xs-3">
+          <h3 class="text-highlight">{{ totals.results[0].altas }}</h3>
+          <p class="text-light">Recovered</p>
         </div>
-        <div id="hospitalized-uci" class="insight-card col-xs-3">
-          <h3 class="text-highlight">49</h3>
-          <p class="text-light">hospitalized UCI</p>
-        </div>
-        <div id="Altas" class="insight-card col-xs-3">
-          <h3 class="text-highlight">49</h3>
-          <p class="text-light">Altas</p>
-        </div>
-        <div id="fatalities" class="insight-card col-xs-3">
-          <h3 class="text-highlight">49</h3>
+        <div class="insight-card col-xs-3">
+          <h3 class="text-highlight">{{ totals.results[0].fallecimientos }}</h3>
           <p class="text-light">Fatalities</p>
         </div>
       </div>
@@ -55,13 +54,10 @@
         <div class="col-xs-12">
           <div class="tabs">
             <a class="tab" ng-click="tabselector = 'firsttab'" ng-class="{'activetab' : tabselector == 'firsttab'}">
-              New cases
+              Total cases
             </a>
             <a class="tab" ng-click="tabselector = 'secondtab'" ng-class="{'activetab' : tabselector == 'secondtab'}">
-              Hospitalized
-            </a>
-            <a class="tab" ng-click="tabselector = 'thirdtab'" ng-class="{'activetab' : tabselector == 'thirdtab'}">
-              Fatalities
+              New cases today
             </a>
           </div>
           <div class="col-xs-12" ng-if="tabselector == 'firsttab'">
@@ -70,27 +66,45 @@
                 ods-analysis-context="cases"
                 ods-analysis-x="codigo_ine"
                 ods-analysis-max="0"
-                ods-analysis-serie-agg="SUM(casos_confirmados)"
-                ods-analysis-sort="agg">
+                ods-analysis-serie-confirmados="SUM(casos_confirmados)"
+                ods-analysis-sort="confirmados">
                 <div ods-subaggregation="analyseregions.results"
-                  ods-subaggregation-serie-maxval="MAX(agg)"
-                  ods-subaggregation-serie-minval="MIN(agg)">
+                  ods-subaggregation-serie-maxval="MAX(confirmados)"
+                  ods-subaggregation-serie-minval="MIN(confirmados)">
                   <span ng-repeat="res in analyseregions.results">
                     {{reg_code = res.x > 9999 ? (res.x | limitTo:2) : (res.x | limitTo:1); ""}}
-                    {{colors[reg_code] = "hsl(220,75%," + (75 - ((res.agg - results[0].minval) / (results[0].maxval - results[0].minval) * 50) | number : 0) + "%,1)"; "" }}
+                    {{colors[reg_code] = "hsl(220,75%," + (75 - ((res.confirmados - results[0].minval) / (results[0].maxval - results[0].minval) * 50) | number : 0) + "%,1)"; "" }}
                   </span>
                 </div>
               </div>
               <ods-map basemap="jawg.light" no-refit="false" scroll-wheel-zoom="false" display-control="false" toolbar-drawing="false">
+                 <ods-map-layer context="cases" color="#142e7b" picto="ods-circle"  display="clusters" function="SUM" expression="casos_confirmados" shape-opacity="0.5" point-opacity="1" caption="false" title="Epidimioliogic satutus in Castilla dy Leon" size-min="3" size-max="5" size-function="linear"></ods-map-layer>
                 <ods-map-layer context="regions" color-categories="colors" color-by-field="cod_ine_prov" color-categories-other="lightgrey" display="categories" shape-opacity="0.7" tooltip-disabled="true"></ods-map-layer>
               </ods-map>
             </div>
           </div>
           <div class="col-xs-12" ng-if="tabselector == 'secondtab'">
-            <ods-map context="cases" ng-if="tabselector == 'thirdtab'"></ods-map>
-          </div>
-          <div class="col-xs-12">
-            <ods-map context="cases" ng-if="tabselector == 'thirdtab'"></ods-map>
+            <div ng-init="colors = {};">
+              <div ods-analysis="analyseregions"
+                ods-analysis-context="cases"
+                ods-analysis-x="codigo_ine"
+                ods-analysis-max="0"
+                ods-analysis-serie-nuevos="SUM(nuevos_positivos)"
+                ods-analysis-sort="nuevos">
+                <div ods-subaggregation="analyseregions.results"
+                  ods-subaggregation-serie-maxval="MAX(nuevos)"
+                  ods-subaggregation-serie-minval="MIN(nuevos)">
+                  <span ng-repeat="res in analyseregions.results">
+                    {{reg_code = res.x > 9999 ? (res.x | limitTo:2) : (res.x | limitTo:1); ""}}
+                    {{colors[reg_code] = "hsl(220,75%," + (75 - ((res.nuevos - results[0].minval) / (results[0].maxval - results[0].minval) * 50) | number : 0) + "%,1)"; "" }}
+                  </span>
+                </div>
+              </div>
+              <ods-map basemap="jawg.light" no-refit="false" scroll-wheel-zoom="false" display-control="false" toolbar-drawing="false">
+                 <ods-map-layer context="cases" color="#142e7b" picto="ods-circle"  display="clusters" function="SUM" expression="nuevos_positivos" shape-opacity="0.5" point-opacity="1" caption="false" title="Epidimioliogic satutus in Castilla dy Leon" size-min="3" size-max="5" size-function="linear"></ods-map-layer>
+                <ods-map-layer context="regions" color-categories="colors" color-by-field="cod_ine_prov" color-categories-other="lightgrey" display="categories" shape-opacity="0.7" tooltip-disabled="true"></ods-map-layer>
+              </ods-map>
+            </div>
           </div>
         </div>
       </div>
