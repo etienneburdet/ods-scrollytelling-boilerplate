@@ -24,32 +24,66 @@
       selected-parameters="{'disjunctive.provincia':true}"
       regions-dataset="limites-provinciales-de-castilla-y-leon-recintos"
       regions-domain="https://analisis.datosabiertos.jcyl.es">
-      <div class="row justify-content-around"
-        ods-analysis="totals"
+      <span ods-analysis="byDate"
         ods-analysis-context="cases"
+        ods-analysis-max="0"
+        ods-analysis-x="fecha"
+        ods-analysis-serie-confirmados="SUM(casos_confirmados)"
+        ods-analysis-serie-nuevos="SUM(nuevos_positivos)"
+        ods-analysis-serie-altas="SUM(altas)"
+        ods-analysis-serie-fallecimientos="SUM(fallecimientos)"
+        ods-analysis-sort="fecha">
+      </span>
+      {{ nbRecords = byDate.results.length - 1; "" }}
+      <span>
+      <span ods-results="list"
+        ods-results-context="cases"
+        ods-results-max="-1"
+        ods-results-sort="fecha">
+          {{ lastDate = list[list.length-1].fields.fecha; "" }}
+          {{ cases.parameters['refine.fecha'] = lastDate;""}}
+      </span>
+      </span>
+      <span ods-analysis="byPostcode"
+        ods-analysis-context="cases"
+        ods-analysis-max="0"
+        ods-analysis-x-provincia="provincia"
+        ods-analysis-serie-confirmados="SUM(casos_confirmados)"
+        ods-analysis-serie-nuevos="SUM(nuevos_positivos)"
+        ods-analysis-serie-altas="SUM(altas)"
+        ods-analysis-serie-fallecimientos="SUM(fallecimientos)"
+        ods-analysis-serie-codigos="SUM(codigo_ine)"
+        ods-analysis-sort="-codigos">
+      </span>
+      <span ods-analysis="byRegion"
+        ods-analysis-context="cases"
+        ods-analysis-x="provincia"
         ods-analysis-max="0"
         ods-analysis-serie-confirmados="SUM(casos_confirmados)"
         ods-analysis-serie-nuevos="SUM(nuevos_positivos)"
         ods-analysis-serie-altas="SUM(altas)"
-        ods-analysis-serie-fallecimientos="SUM(fallecimientos)">
+        ods-analysis-serie-fallecimientos="SUM(fallecimientos)"
+        ods-analysis-sort="confirmados">
+      </span>
+      <div class="row justify-content-around">
         <div  class="insight-card col-xs-3">
-          <h3 class="text-highlight">{{ totals.results[0].confirmados }}</h3>
+          <h3 class="text-highlight insight-figure">{{ byDate.results[nbRecords].confirmados }}</h3>
           <p class="text-light">confirmed cases</p>
         </div>
         <div class="insight-card col-xs-3">
-          <h3 class="text-highlight">{{ totals.results[0].nuevos }}</h3>
+          <h3 class="text-highlight insight-figure">{{ byDate.results[nbRecords].nuevos }}</h3>
           <p class="text-light">confirmed new-cases today</p>
         </div>
         <div class="insight-card col-xs-3">
-          <h3 class="text-highlight">{{ totals.results[0].altas }}</h3>
+          <h3 class="text-highlight insight-figure">{{ byDate.results[nbRecords].altas }}</h3>
           <p class="text-light">Recovered</p>
         </div>
         <div class="insight-card col-xs-3">
-          <h3 class="text-highlight">{{ totals.results[0].fallecimientos }}</h3>
+          <h3 class="text-highlight insight-figure">{{ byDate.results[nbRecords].fallecimientos }}</h3>
           <p class="text-light">Fatalities</p>
         </div>
       </div>
-
+      <p ods-resluts="items" ods-results-context="cases" ods-results-max="0">{{ items }}</p>
       <div class="row feature-box" ng-init="tabselector = 'firsttab'">
         <div class="col-xs-12">
           <div class="tabs">
@@ -62,17 +96,12 @@
           </div>
           <div class="col-xs-12" ng-if="tabselector == 'firsttab'">
             <div ng-init="colors = {};">
-              <div ods-analysis="analyseregions"
-                ods-analysis-context="cases"
-                ods-analysis-x="codigo_ine"
-                ods-analysis-max="0"
-                ods-analysis-serie-confirmados="SUM(casos_confirmados)"
-                ods-analysis-sort="confirmados">
-                <div ods-subaggregation="analyseregions.results"
+              <div>
+                <div ods-subaggregation="byPostcode.results"
                   ods-subaggregation-serie-maxval="MAX(confirmados)"
                   ods-subaggregation-serie-minval="MIN(confirmados)">
-                  <span ng-repeat="res in analyseregions.results">
-                    {{reg_code = res.x > 9999 ? (res.x | limitTo:2) : (res.x | limitTo:1); ""}}
+                  <span ng-repeat="res in byPostcode.results">
+                    {{reg_code = res.codigos > 9999 ? (res.codigos | limitTo:2) : (res.codigos | limitTo:1); ""}}
                     {{colors[reg_code] = "hsl(220,75%," + (75 - ((res.confirmados - results[0].minval) / (results[0].maxval - results[0].minval) * 50) | number : 0) + "%,1)"; "" }}
                   </span>
                 </div>
@@ -85,17 +114,11 @@
           </div>
           <div class="col-xs-12" ng-if="tabselector == 'secondtab'">
             <div ng-init="colors = {};">
-              <div ods-analysis="analyseregions"
-                ods-analysis-context="cases"
-                ods-analysis-x="codigo_ine"
-                ods-analysis-max="0"
-                ods-analysis-serie-nuevos="SUM(nuevos_positivos)"
-                ods-analysis-sort="nuevos">
-                <div ods-subaggregation="analyseregions.results"
+                <div ods-subaggregation="byPostcode.results"
                   ods-subaggregation-serie-maxval="MAX(nuevos)"
                   ods-subaggregation-serie-minval="MIN(nuevos)">
-                  <span ng-repeat="res in analyseregions.results">
-                    {{reg_code = res.x > 9999 ? (res.x | limitTo:2) : (res.x | limitTo:1); ""}}
+                  <span ng-repeat="res in byPostcode.results">
+                    {{reg_code = res.codigos > 9999 ? (res.codigos | limitTo:2) : (res.codigos | limitTo:1); ""}}
                     {{colors[reg_code] = "hsl(220,75%," + (75 - ((res.nuevos - results[0].minval) / (results[0].maxval - results[0].minval) * 50) | number : 0) + "%,1)"; "" }}
                   </span>
                 </div>
@@ -107,10 +130,8 @@
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="row feature-box"
-        ng-init="active_row = {}">
+      <div class="row feature-box"ß>
         <div class="col-xs-12">
           <table class="summary-table">
             <thead>
@@ -120,16 +141,8 @@
               <th>Fatalities</th>
             </thead>
             <tbody>
-              <tr ods-analysis="sumregion"
-                    ods-analysis-context="cases"
-                    ods-analysis-max="100"
-                    ods-analysis-x="provincia"
-                    ods-analysis-sort="count"
-                    ods-analysis-serie-confirmados="SUM(casos_confirmados)"
-                    ods-analysis-serie-altas="SUM(altas)"
-                    ods-analysis-serie-fallecimientos="SUM(fallecimientos)"
-                    ng-repeat="region in sumregion.results"
-                    ng-class="{'toggled': toggled}">
+              <tr ng-repeat="region in byRegion.results"
+                ng-class="{'toggled': toggled}">
                 <td>
                   <div>
                     <input id="{{ region.x }}" type="checkbox" class="hidden-checkbox"
@@ -148,29 +161,29 @@
           </table>
         </div>
         <div class="col-xs-6">
-          <h4 class="text-primary text-center">Tendencia</h4>
+          <h4 class="text-primary text-center">Evolution</h4>
           <ods-chart timescale="year" single-y-axis="true" scientific-display="false" align-month="true">
             <ods-chart-query context="selected" field-x="fecha" maxpoints="0" timescale="day">
-              <ods-chart-serie expression-y="casos_confirmados" chart-type="spline" function-y="SUM" label-y="Casos confirmados" color="#00c7b1" scientific-display="true" display-values="true">
+              <ods-chart-serie expression-y="casos_confirmados" chart-type="spline" function-y="SUM" label-y="Confirmed cases" color="#00c7b1" scientific-display="true" display-values="true">
               </ods-chart-serie>
-              <ods-chart-serie expression-y="fallecimientos" chart-type="line" function-y="SUM" label-y="Fallecimientos" color="#fc8d62" scientific-display="true" display-values="true">
+              <ods-chart-serie expression-y="fallecimientos" chart-type="line" function-y="SUM" label-y="Deceased" color="#fc8d62" scientific-display="true" display-values="true">
               </ods-chart-serie>
             </ods-chart-query>
           </ods-chart>
         </div>
         <div class="col-xs-6">
-          <h4 class="text-primary text-center">Incremento diario</h4>
+          <h4 class="text-primary text-center">Daily Increment</h4>
           <ods-chart timescale="year" align-month="true">
             <ods-chart-query context="selected" field-x="fecha" maxpoints="0" timescale="day">
-              <ods-chart-serie expression-y="nuevos_positivos" chart-type="column" function-y="SUM" label-y="Nuevos casos positivos" color="#00c7b1" display-values="true" display-stack-values="false" scientific-display="true">
+              <ods-chart-serie expression-y="nuevos_positivos" chart-type="column" function-y="SUM" label-y="New positives" color="#00c7b1" display-values="true" display-stack-values="false" scientific-display="true">
               </ods-chart-serie>
             </ods-chart-query>
           </ods-chart>
           </div>
       </div>
     </ods-dataset-context>
-
   </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-sanitize.min.js"></script>
