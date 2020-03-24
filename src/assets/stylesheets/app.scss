@@ -83,6 +83,7 @@ th {
   box-shadow: 0px 0px 0px rgba(0,0,0,0);
   text-align: center;
   padding: 21px;
+  height: 100%;
 }
 
 .insight-figure {
@@ -134,11 +135,6 @@ th {
 
 .text-light {
   color: #898D92;
-}
-
-.justify-content-around {
-  display: flex;
-  justify-content: space-around;
 }
 
 .justify-content-left {

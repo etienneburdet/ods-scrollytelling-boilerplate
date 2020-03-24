@@ -35,14 +35,12 @@
         ods-analysis-sort="fecha">
       </span>
       {{ nbRecords = byDate.results.length - 1; "" }}
-      <span>
       <span ods-results="list"
         ods-results-context="cases"
         ods-results-max="-1"
         ods-results-sort="fecha">
           {{ lastDate = list[list.length-1].fields.fecha; "" }}
           {{ cases.parameters['refine.fecha'] = lastDate;""}}
-      </span>
       </span>
       <span ods-analysis="byPostcode"
         ods-analysis-context="cases"
@@ -65,22 +63,30 @@
         ods-analysis-serie-fallecimientos="SUM(fallecimientos)"
         ods-analysis-sort="confirmados">
       </span>
-      <div class="row justify-content-around">
-        <div  class="insight-card col-xs-3">
-          <h3 class="text-highlight insight-figure">{{ byDate.results[nbRecords].confirmados }}</h3>
-          <p class="text-light">confirmed cases</p>
+      <div class="row">
+        <div  class="col-md-3">
+          <div class="insight-card">
+            <h3 class="text-highlight insight-figure">{{ byDate.results[nbRecords].confirmados }}</h3>
+            <p class="text-light">confirmed cases</p>
+          </div>
         </div>
-        <div class="insight-card col-xs-3">
-          <h3 class="text-highlight insight-figure">{{ byDate.results[nbRecords].nuevos }}</h3>
-          <p class="text-light">confirmed new-cases today</p>
+        <div class="col-md-3">
+          <div class="insight-card">
+            <h3 class="text-highlight insight-figure">{{ byDate.results[nbRecords].nuevos }}</h3>
+            <p class="text-light">confirmed new-cases today</p>
+          </div>
         </div>
-        <div class="insight-card col-xs-3">
-          <h3 class="text-highlight insight-figure">{{ byDate.results[nbRecords].altas }}</h3>
-          <p class="text-light">Recovered</p>
+        <div class="col-md-3">
+          <div class="insight-card">
+            <h3 class="text-highlight insight-figure">{{ byDate.results[nbRecords].altas }}</h3>
+            <p class="text-light">Recovered</p>
+          </div>
         </div>
-        <div class="insight-card col-xs-3">
-          <h3 class="text-highlight insight-figure">{{ byDate.results[nbRecords].fallecimientos }}</h3>
-          <p class="text-light">Fatalities</p>
+        <div class="col-md-3">
+          <div class="insight-card">
+            <h3 class="text-highlight insight-figure">{{ byDate.results[nbRecords].fallecimientos }}</h3>
+            <p class="text-light">Fatalities</p>
+          </div>
         </div>
       </div>
       <p ods-resluts="items" ods-results-context="cases" ods-results-max="0">{{ items }}</p>
@@ -160,7 +166,7 @@
             </tbody>
           </table>
         </div>
-        <div class="col-xs-6">
+        <div class="col-md-6">
           <h4 class="text-primary text-center">Evolution</h4>
           <ods-chart timescale="year" single-y-axis="true" scientific-display="false" align-month="true">
             <ods-chart-query context="selected" field-x="fecha" maxpoints="0" timescale="day">
@@ -171,7 +177,7 @@
             </ods-chart-query>
           </ods-chart>
         </div>
-        <div class="col-xs-6">
+        <div class="col-md-6">
           <h4 class="text-primary text-center">Daily Increment</h4>
           <ods-chart timescale="year" align-month="true">
             <ods-chart-query context="selected" field-x="fecha" maxpoints="0" timescale="day">
