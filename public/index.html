@@ -11,7 +11,28 @@
 
 <body>
   <div class="container" ng-app="ods-widgets">
-
+      <ods-dataset-context context="epl"
+        epl-domain="https://data.opendatasoft.com"
+        epl-dataset="aggregates-group-valued-results-2018@kering-group">
+        {{ epl.parameters['refine.environmental_impact_group'] = "Land use"; "" }}
+        <span ods-analysis="sum"
+          ods-analysis-context="epl"
+          ods-analysis-max="10"
+          ods-analysis-x="impact_country"
+          ods-analysis-serie-impact="SUM(sum_y2018)"
+          ods-analysis-sort="impact"
+          ng-repeat="result in sum.result"></span>
+        <p ods-results="records"
+          ods-results-context="epl"
+          ods-results-max="10"
+          ng-repeat="record in records">
+            {{ record.fields.impact_country }} : {{ record.fields.sum_y2018 | number:2 }}
+          </p>
+          <div>
+            {{ result.x }} : {{ result.impact | number:0 }}
+          </div>
+      </ods-dataset-context>
+    </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
