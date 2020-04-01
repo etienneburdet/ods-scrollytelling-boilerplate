@@ -5,12 +5,12 @@
   <title>ODS Widgets Minimal Boilerplate</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 
 <body>
-  <div class="container" ng-app="ods-widgets">
+  <div class="container-fluid" ng-app="ods-widgets">
       <ods-dataset-context context="epl"
         epl-domain="https://data.opendatasoft.com"
         epl-dataset="aggregates-group-valued-results-2018@kering-group">
@@ -22,14 +22,21 @@
           ods-analysis-serie-impact="SUM(sum_y2018)"
           ods-analysis-sort="impact"
           ng-repeat="result in sum.result"></span>
-        <p ods-results="records"
-          ods-results-context="epl"
-          ods-results-max="10"
-          ng-repeat="record in records">
-            {{ record.fields.impact_country }} : {{ record.fields.sum_y2018 | number:2 }}
-          </p>
-          <div>
-            {{ result.x }} : {{ result.impact | number:0 }}
+
+          <nav class="nav nav-pills nav-fill">
+            <a class="nav-item nav-link active" href="#">Active</a>
+            <a class="nav-item nav-link" href="#">Much longer nav link</a>
+            <a class="nav-item nav-link" href="#">Link</a>
+            <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </nav>
+          <div class="row position">
+            <div class="col-12 border-top" ng-repeat="result in sum.results">
+              <div class="metric-group">
+                <span class="meter" style="width: 50%"></span>
+                <p class="text-center text-blend m-0">{{ result.x }} : {{ result.impact / 1000000 | number:0 }} km²</p>
+              </div>
+              </div>
+            </div>
           </div>
       </ods-dataset-context>
     </div>
