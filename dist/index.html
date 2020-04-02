@@ -5,56 +5,138 @@
   <title>ODS Widgets Minimal Boilerplate</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 
 <body>
-  <div class="container-fluid" ng-app="ods-widgets">
-      <ods-dataset-context context="epl"
-        epl-domain="https://data.opendatasoft.com"
-        epl-dataset="aggregates-group-valued-results-2018@kering-group">
-        {{ epl.parameters['disjunctive.environmental_impact_group'] = true; ""}}
-        <span ods-analysis="sum"
-          ods-analysis-context="epl"
-          ods-analysis-max="10"
-          ods-analysis-x="impact_country"
-          ods-analysis-serie-impact="SUM(sum_y2018)"
-          ods-analysis-sort="impact"></span>
-          <nav class="navbar navbar-expand-lg navbar-dark bg-dark"
-            ng-init="selected = 'Land use' ">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <a class="navbar-brand" href="#">{{ selected }}</a>
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
-                <li class="nav-item"
-                  ods-facet-results="impacts"
-                  ods-facet-results-context="epl"
-                  ods-facet-results-facet-name="environmental_impact_group"
-                  ng-repeat="impact in impacts">
-                  <a class="nav-link"
-                    href="#"
-                    ng-click="$parent.$parent.selected = impact.name"
-                    data-toggle="collapse" data-target="#navbarNav">{{ impact.name }}</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-          {{ epl.parameters['refine.environmental_impact_group'] = selected; "" }}
-          <div class="row">
-            <div class="col-12 border-top" ng-repeat="result in sum.results">
-              <div class="metric-group">
-                <span class="meter" style="width: {{ 100 * result.impact / sum.results[0].impact; }}%"></span>
-                <p class="text-center text-blend m-0">{{ result.x }} : {{ result.impact | number:0 }}</p>
-              </div>
-            </div>
-          </div>
-      </ods-dataset-context>
-    </div>
-  </div>
+  <div class="container" ng-app="ods-widgets">
+    <section class="sticky-content">
+      <h2 class="text-primary text-center mb-4">
+        COVID-19 epidemiliogic status in Castilla y León (last update 17/03/2020)
+      </h2>
+    </section>
+    <ods-dataset-context context="cases" cases-domain="https://analisis.datosabiertos.jcyl.es" cases-dataset="situacion-epidemiologica-coronavirus-en-castilla-y-leon">
+      <div class="row justify-content-around">
+        <div id="confirmed-cases" class="insight-card col-xs-3">
+          <h3 class="text-highlight">49</h3>
+          <p class="text-light">confirmed cases</p>
+        </div>
+        <div id="new-cases" class="insight-card col-xs-3">
+          <h3 class="text-highlight">49</h3>
+          <p class="text-light">confirmed new-cases</p>
+        </div>
+        <div id="hospitalized" class="insight-card col-xs-3">
+          <h3 class="text-highlight">49</h3>
+          <p class="text-light">hospitalized</p>
+        </div>
+        <div id="hospitalized-uci" class="insight-card col-xs-3">
+          <h3 class="text-highlight">49</h3>
+          <p class="text-light">hospitalized UCI</p>
+        </div>
+        <div id="Altas" class="insight-card col-xs-3">
+          <h3 class="text-highlight">49</h3>
+          <p class="text-light">Altas</p>
+        </div>
+        <div id="fatalities" class="insight-card col-xs-3">
+          <h3 class="text-highlight">49</h3>
+          <p class="text-light">Fatalities</p>
+        </div>
+      </div>
 
+      <div class="row feature-box" ng-init="tabselector = 'firsttab'">
+        <div class="col-xs-12">
+          <div class="tabs">
+            <a class="tab" ng-click="tabselector = 'firsttab'" ng-class="{'activetab' : tabselector == 'firsttab'}">
+              New cases
+            </a>
+            <a class="tab" ng-click="tabselector = 'secondtab'" ng-class="{'activetab' : tabselector == 'secondtab'}">
+              Hospitalized
+            </a>
+            <a class="tab" ng-click="tabselector = 'thirdtab'" ng-class="{'activetab' : tabselector == 'thirdtab'}">
+              Fatalities
+            </a>
+          </div>
+          <div class="col-xs-12" ng-if="tabselector == 'firsttab'">
+            <ods-map no-refit="true" scroll-wheel-zoom="false" display-control="false">
+              <ods-map-layer context="cases" display="choropleth" function="AVG"></ods-map-layer>
+            </ods-map>
+          </div>
+          <div class="col-xs-12">
+            <ods-map context="cases" ng-if="tabselector == 'secondtab'"></ods-map>
+          </div>
+          <div class="col-xs-12">
+            <ods-map context="cases" ng-if="tabselector == 'thirdtab'"></ods-map>
+          </div>
+        </div>
+      </div>
+
+      <div class="row feature-box" ng-init="row-selector = {}">
+        <div class="col-xs-12">
+          <table class="summary-table">
+            <thead>
+              <th>Region</th>
+              <th>Confirmed</th>
+              <th>New</th>
+              <th>hospitalized</th>
+              <th>hospitalized UCI</th>
+              <th>Altas</th>
+              <th>Fatalities</th>
+            </thead>
+            <tbody>
+              <tr ng-click="toggle1 = !toggle1" ng-class="{'selected' : toggle1}">
+                <td>Lyon</td>
+                <td>42</td>
+                <td>42</td>
+                <td>42</td>
+                <td>42</td>
+                <td>42</td>
+                <td>42</td>
+              </tr>
+              <tr ng-click="toggle2 = !toggle2" ng-class="{'selected' : toggle2}">
+                <td>Paris</td>
+                <td>42</td>
+                <td>42</td>
+                <td>42</td>
+                <td>42</td>
+                <td>42</td>
+                <td>42</td>
+              </tr>
+              <tr ng-click="toggle3 = !toggle3" ng-class="{'selected' : toggle3}">
+                <td>Tours</td>
+                <td>42</td>
+                <td>42</td>
+                <td>42</td>
+                <td>42</td>
+                <td>42</td>
+                <td>42</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="row feature-box">
+            <div class="col-xs-6">
+              <ods-chart>
+                <ods-chart-query timescale="day" context="cases" field-x="fecha">
+                  <ods-chart-serie expression-y="casos_confirmados" chart-type="spline">
+                  </ods-chart-serie>
+                </ods-chart-query>
+              </ods-chart>
+            </div>
+            <div class="col-xs-6"></div>
+            <div class="col-xs-6">
+              <ods-chart>
+                <ods-chart-query timescale="day" context="cases" field-x="fecha">
+                  <ods-chart-serie expression-y="nuevos_positivos" chart-type="bar">
+                  </ods-chart-serie>
+                </ods-chart-query>
+              </ods-chart>
+            </div>
+        </div>
+      </div>
+      </div>
+    </ods-dataset-context>
+
+  </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-sanitize.min.js"></script>
