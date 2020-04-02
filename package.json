@@ -6,6 +6,7 @@
   "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server",
+    "start": "http-server dist",
     "watch": "webpack --watch"
   },
   "dependencies": {
@@ -14,6 +15,7 @@
     "css-loader": "^3.4.2",
     "etiennes-ods-widgets": "^0.0.3",
     "html-webpack-plugin": "^3.2.0",
+    "http-server": "^0.12.1",
     "jquery": "^3.4.1",
     "less": "^3.11.1",
     "less-loader": "^5.0.0",
@@ -26,6 +28,7 @@
     "tailwindcss": "^1.2.0",
     "webpack": "^4.42.0",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3"
+    "webpack-dev-server": "^3.10.3",
+    "workbox-webpack-plugin": "^5.1.2"
   }
 }
