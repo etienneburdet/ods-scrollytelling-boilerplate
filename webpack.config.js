@@ -1,7 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const WorkboxPlugin = require('workbox-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -13,10 +12,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'ODS Minimal template',
       template: 'public/index.html'
-    }),
-    new WorkboxPlugin.GenerateSW({
-      clientsClaim: true,
-      skipWaiting: true
     })
   ],
   devtool: 'inline-source-map',
@@ -45,14 +40,6 @@ module.exports = {
           'style-loader',
           'css-loader',
           'sass-loader'
-        ]
-      },
-      {
-        test: /\.less$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'less-loader'
         ]
       }
     ]

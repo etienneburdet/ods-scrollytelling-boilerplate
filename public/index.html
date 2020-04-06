@@ -12,6 +12,46 @@
 
 <body>
   <div class="container-fluid" ng-app="ods-widgets">
+    <ods-dataset-context context="velo, coupures" velo-domain="data.opendatasoft.com" coupures-domain="data.opendatasoft.com" velo-dataset="amenagements-velo-en-ile-de-france@datailedefrance"
+      coupures-dataset="coupures-urbaines-dile-de-france0@datailedefrance">
+      <div id="idf" class="map-wrapper">
+        <ods-map class="map" location="10,48.831,2.349" scroll-wheel-zoom="0" display-control="0">
+          <ods-map-layer context="velo" color="#128317"></ods-map-layer>
+        </ods-map>
+      </div>
+      <div id="coupures" class="map-wrapper">
+        <ods-map class="map" location="10,48.831,2.349" scroll-wheel-zoom="0" display-control="0">
+          <ods-map-layer context="coupures" color="#ba681c"></ods-map-layer>
+        </ods-map>
+      </div>
+      <div id="fluvial" class="map-wrapper">
+        <ods-map class="map" location="12,48.831,2.349" scroll-wheel-zoom="0" display-control="0">
+          <ods-map-layer context="velo" color="#128317"></ods-map-layer>
+          <ods-map-layer context="coupures" color="#ba681c"></ods-map-layer>
+        </ods-map>
+      </div>
+      <div id="feroviaire" class="map-wrapper">
+        <ods-map class="map" location="15,48.936,2.440" scroll-wheel-zoom="0" display-control="0">
+          <ods-map-layer context="velo" color="#128317"></ods-map-layer>
+          <ods-map-layer context="coupures" color="#ba681c"></ods-map-layer>
+        </ods-map>
+      </div>
+    </ods-dataset-context>
+    <div id="story">
+      <!-- The ".step" is used as a selector for the scroller.
+      Whenever it enters/leaves the screen the onStepEnter/onStepExit callback is fired
+
+      data-feature will tell wich element to apply/remove the ".acitve" class on.-->
+      <div class="step lefty" data-feature="idf">
+        <p>This is a map</p>
+      </div>
+      <div class="step" data-feature="coupures">
+        <p>This is another map</p>
+      </div>
+      <div class="step" data-feature="fluvial">
+        <p>And yet another</p>
+      </div>
+    </div>
   </div>
 
   <!-- These are  the required js library if you use ODS widgets. Carefully test if you are using a framework, since they rely on AngularJS and jQuery -->
