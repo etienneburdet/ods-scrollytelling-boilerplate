@@ -1,4 +1,5 @@
 import scrollama from 'scrollama'
+import { toggleActiveClass } from '../components/ods-map/ods-map' // You can import specific callback if you want more than toggling a classx
 
 export default () => {
   const scroller = scrollama()
@@ -9,17 +10,8 @@ export default () => {
       offset: 0.5,
       progress: true
     })
-    .onStepEnter(response => {
-      const feature = document.getElementById(response.element.dataset.feature)
-      // We add the same class to both the story block and the feature, but they will have different effect with css chaining
-      feature.classList.add('active')
-      response.element.classList.add('active')
-    })
-    .onStepExit(response => {
-      const feature = document.getElementById(response.element.dataset.feature)
-      feature.classList.remove('active')
-      response.element.classList.remove('active')
-    })
+    .onStepEnter(toggleActiveClass)
+    .onStepExit(toggleActiveClass)
 
   window.addEventListener('resize', scroller.resize)
 }

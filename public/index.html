@@ -40,16 +40,22 @@
     <div id="story">
       <!-- The ".step" is used as a selector for the scroller.
       Whenever it enters/leaves the screen the onStepEnter/onStepExit callback is fired
-
       data-feature will tell wich element to apply/remove the ".acitve" class on.-->
-      <div class="step lefty" data-feature="idf">
-        <p>This is a map</p>
+      <div class="step" data-feature="idf" data-enter="addActiveClass" data-exit="removeActiveClass">
+        <!-- The .step div takes the full screen, inside it you want to place your text etc. which is typically not fullscreen -->
+        <div class="story-block lefty">
+          <p>This is a map</p>
+        </div>
       </div>
-      <div class="step" data-feature="coupures">
-        <p>This is another map</p>
+      <div class="step" data-feature="coupures" data-enter="addActiveClass" data-exit="removeActiveClass">
+        <div class="story-block centered">
+          <p>This is another map</p>
+        </div>
       </div>
-      <div class="step" data-feature="fluvial">
-        <p>And yet another</p>
+      <div class="step" data-feature="fluvial" data-enter="addActiveClass" data-exit="removeActiveClass">
+        <div class="story-block righty">
+          <p>And yet another</p>
+        </div>
       </div>
     </div>
   </div>
