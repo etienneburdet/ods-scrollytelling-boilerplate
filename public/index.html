@@ -14,24 +14,24 @@
   <div class="container-fluid" ng-app="ods-widgets">
     <ods-dataset-context context="velo, coupures" velo-domain="data.opendatasoft.com" coupures-domain="data.opendatasoft.com" velo-dataset="amenagements-velo-en-ile-de-france@datailedefrance"
       coupures-dataset="coupures-urbaines-dile-de-france0@datailedefrance">
-      <div id="idf" class="map-wrapper">
-        <ods-map class="map" location="10,48.831,2.349" scroll-wheel-zoom="0" display-control="0">
+      <div class="ods-map-wrapper" id="idf">
+        <ods-map class="ods-map" location="10,48.831,2.349" scroll-wheel-zoom="false" display-control="0">
           <ods-map-layer context="velo" color="#128317"></ods-map-layer>
         </ods-map>
       </div>
-      <div id="coupures" class="map-wrapper">
-        <ods-map class="map" location="10,48.831,2.349" scroll-wheel-zoom="0" display-control="0">
+      <div class="ods-map-wrapper" id="coupures">
+        <ods-map class="ods-map" location="10,48.831,2.349" scroll-wheel-zoom="false" display-control="0">
           <ods-map-layer context="coupures" color="#ba681c"></ods-map-layer>
         </ods-map>
       </div>
-      <div id="fluvial" class="map-wrapper">
-        <ods-map class="map" location="12,48.831,2.349" scroll-wheel-zoom="0" display-control="0">
+      <div class="ods-map-wrapper" id="fluvial">
+        <ods-map class="ods-map" location="12,48.831,2.349" scroll-wheel-zoom="false" display-control="0">
           <ods-map-layer context="velo" color="#128317"></ods-map-layer>
           <ods-map-layer context="coupures" color="#ba681c"></ods-map-layer>
         </ods-map>
       </div>
-      <div id="feroviaire" class="map-wrapper">
-        <ods-map class="map" location="15,48.936,2.440" scroll-wheel-zoom="0" display-control="0">
+      <div class="ods-map-wrapper" id="feroviaire">
+        <ods-map class="ods-map" location="15,48.936,2.440" scroll-wheel-zoom="false" display-control="0">
           <ods-map-layer context="velo" color="#128317"></ods-map-layer>
           <ods-map-layer context="coupures" color="#ba681c"></ods-map-layer>
         </ods-map>

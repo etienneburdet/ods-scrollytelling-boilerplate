@@ -1,5 +1,4 @@
-import './stylesheets/app.scss'
-import 'bootstrap'
+import './app.scss'
 
 import initScroller from './plugins/scroll.js'
 
