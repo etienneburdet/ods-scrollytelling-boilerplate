@@ -1,8 +1,18 @@
 import scrollama from 'scrollama'
-import { toggleActiveClass } from '../components/ods-map/ods-map' // You can import specific callback if you want more than toggling a classx
 
-export default () => {
+export default (callbacks) => {
   const scroller = scrollama()
+
+  //This a general setting that accepts any callback at enter and exit.
+  // Most of the time you wil use only one function such as toggleActiveClass, in which case it's simpler to directly invoke the callback : 
+  // scroller
+  //   .setup({
+  //     step: '.step',
+  //     offset: 0.5,
+  //     progress: true
+  //   })
+  //   .onStepEnter(toggleActiveClass)
+  //   .onStepExit(toggleActiveClass)
 
   scroller
     .setup({
@@ -10,8 +20,14 @@ export default () => {
       offset: 0.5,
       progress: true
     })
-    .onStepEnter(toggleActiveClass)
-    .onStepExit(toggleActiveClass)
+    .onStepEnter((response) => {
+      const callback = callbacks[response.element.dataset.feature].enter || callbacks[response.element.dataset.feature]
+      callback(response)
+    })
+    .onStepExit((response) => {
+      const callback = callbacks[response.element.dataset.feature].exit || callbacks[response.element.dataset.feature]
+      callback(response)
+    })
 
   window.addEventListener('resize', scroller.resize)
 }
