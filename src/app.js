@@ -15,9 +15,10 @@ const removeActiveClass = (response) => {
 }
 
 const setGaugeProgress = (response) => {
-  const percent = response.progress
-  const gauge = document.getElementById('ods-gauge')
-  gauge.setAttribute('value', percent)
+  console.log(response.progress);
+  // const percent = response.progress
+  // const gauge = document.getElementById('ods-gauge')
+  // gauge.setAttribute('value', percent)
 }
 
 const callbacks = {
@@ -30,7 +31,9 @@ const callbacks = {
     exit: removeActiveClass
   },
   gauge: {
-    progress: setGaugeProgress
+    enter: addActiveClass,
+    exit: removeActiveClass,
+    progress: setGaugeProgress
   }
 }
 
