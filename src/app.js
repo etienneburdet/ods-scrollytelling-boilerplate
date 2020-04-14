@@ -8,10 +8,18 @@ const toggleActiveClass = (response) => {
   response.element.classList.toggle('active')
 }
 
+const setGaugeProgress = (response) => {
+  const percent = response.progress
+  const gauge = document.getElementById('ods-gauge')
+  gauge.setAttribute('value', percent)
+}
+
 const callbacks = {
   'map-idf': toggleActiveClass,
   'chart-idf': toggleActiveClass,
-  fluvial: toggleActiveClass
+  gauge: {
+    progress: setGaugeProgress
+  }
 }
 
 initScroller(callbacks)

@@ -25,9 +25,9 @@
 }
 
 .step {
-  padding: 33vh 0;
-  /* margin-bottom: 10vh; */
   opacity: 0.25;
+  min-height: 33vh;
+  padding: 33vh 0;
 }
 
 .step.active {
@@ -35,7 +35,14 @@
 }
 
 .step div {
-  padding: 25px 50px;
-  line-height: 25px;
+  padding: 21px 45px;
+  line-height: 21px;
   font-size: 13px;
+}
+
+.step-long {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

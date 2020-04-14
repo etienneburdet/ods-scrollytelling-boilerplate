@@ -28,6 +28,12 @@ export default (callbacks) => {
       const callback = callbacks[response.element.dataset.feature].exit || callbacks[response.element.dataset.feature]
       callback(response)
     })
+    .onStepProgress((response) => {
+      const progressCallback = callbacks[response.element.dataset.feature].progress
+      if (progressCallback) {
+        progressCallback(response)
+      }
+    })
 
   window.addEventListener('resize', scroller.resize)
 }

@@ -13,51 +13,65 @@
 <body>
   <div class="container-fluid" ng-app="ods-widgets">
     <ods-dataset-context context="velo" velo-domain="data.opendatasoft.com" velo-dataset="amenagements-velo-en-ile-de-france@datailedefrance">
-      <div id="map-idf" class="ods-map-wrapper">
-        <ods-map class="fullscreen-feature" location="10,48.831,2.349" scroll-wheel-zoom="false" display-control="0">
-          <ods-map-layer context="velo" color="#128317"></ods-map-layer>
-        </ods-map>
-      </div>
-      <div id="chart-idf" class="ods-chart-wrapper">
-        <ods-chart class="fullscreen-feature" align-month="true">
-          <ods-chart-query context="velo" field-x="highway" maxpoints="50">
-            <ods-chart-serie expression-y="osm_id" chart-type="column" function-y="AVG" color="#e74c3c" scientific-display="true">
-            </ods-chart-serie>
-          </ods-chart-query>
-        </ods-chart>
-      </div>
+      <section id="intro">
+        <div class="prose">
+          <h1>Opendatasotf scrollytelling boilerplate</h1>
+          <p>This a little boilerplate that showcases different techniques of scrolly telling you can use with our data. We have more than 20k dataset you can use!</p>
+          <p>This boilerplate uses the most excellent scrollama lib and takes a lot of inspiration from the Mapbox GL JS scrollytelling template. Be sure to check those out!</p>
+        </div>
+      </section>
+      <section id="fullsrceen">
+        <div id="fullscreen">
+          <!-- The .step div takes the full screen, inside it you want to place your text etc. which is typically not fullscreen -->
+          <map id="map-idf" class="ods-map-wrapper">
+            <ods-map class="fullscreen-feature" location="10,48.831,2.349" scroll-wheel-zoom="false" display-control="0">
+              <ods-map-layer context="velo" color="#128317"></ods-map-layer>
+            </ods-map>
+          </map>
+          <div class="step" data-feature="map-idf">
+            <div class="story-block lefty">
+              <p>This a map from ODS widgets. It will have
+                <pre>position: fixed;</pre> until this box is out. It uses the default action of this boilerplate: add the
+                <pre>.active</pre> class to the feature.</p>
+            </div>
+          </div>
+          <figure id="chart-idf" class="ods-chart-wrapper">
+            <ods-chart class="fullscreen-feature" align-month="true">
+              <ods-chart-query context="velo" field-x="highway" maxpoints="50">
+                <ods-chart-serie expression-y="osm_id" chart-type="column" function-y="AVG" color="#e74c3c" scientific-display="true">
+                </ods-chart-serie>
+              </ods-chart-query>
+            </ods-chart>
+          </figure>
+          <div class="step" data-feature="chart-idf">
+            <div class="story-block centered">
+              <p>Sticky is the most common behavior in scrollytelling, but you can add any transition you want. This chart from ODS widgets, slides in and fades. To do that you have to specify callbacks when entering and exiting the step in the
+                callback mapping of
+                <pre>src/app.js</pre>
+              </p>
+              <p>You can also style those text box as you wish! Here we centered it 😄</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="columns">
+        <div class="scrolly-side">
+          <div class="step step-long" data-feature="gauge">
+            <div class="story-block lefty">
+              <p>This a map from ODS widgets. It will have
+                <pre>position: fixed;</pre> until this box is out. It uses the default action of this boilerplate: add the
+                <pre>.active</pre> class to the feature.</p>
+            </div>
+          </div>
+          <figure id="gauge" class="ods-gauge-wrapper">
+            <ods-gauge class="column-feature" display-mode="circle" value="33" max="100"></ods-gauge>
+          </figure>
+        </div>
+      </section>
     </ods-dataset-context>
-    <div id="story">
-      <h1>Opendatasotf scrollytelling boilerplate</h1>
-      <p>This a little boilerplate that showcases different techniques of scrolly telling you can use with our data. We have more than 20k dataset you can use!</p>
-      <p>This boilerplate uses the most excellent scrollama lib and takes a lot of inspiration from the Mapbox GL JS scrollytelling template. Be sure to check those out!</p>
-      <!-- The ".step" is used as a selector for the scroller.
+    <!-- The ".step" is used as a selector for the scroller.
       Whenever it enters/leaves the screen the onStepEnter/onStepExit callback is fired
       data-feature will tell wich element to apply/remove the ".acitve" class on.-->
-      <div class="step" data-feature="map-idf">
-        <!-- The .step div takes the full screen, inside it you want to place your text etc. which is typically not fullscreen -->
-        <div class="story-block lefty">
-          <p>This is a map from the ODS widgets that fades in and out as you scroll.</p>
-        </div>
-      </div>
-      <div class="step" data-feature="chart-idf">
-        <div class="story-block centered">
-          <p>This is a chart from ODS widgets that slides in and out from the right. You can style those text box as you wish! Here we centered it 😄</p>
-        </div>
-      </div>
-      <div class="step" data-feature="chart-idf">
-        <div class="story-block righty">
-          <p>You can also make things appear as you scroll. This one requires a bit of JS:
-            <ul>
-              <li>Scrollama gives you access to the progress binding</li>
-              <li>You set it as the attribute of the widget in the callback function</li>
-            </ul>
-            Here we create discrete steps to add a new element to show every XX%.
-          </p>
-        </div>
-      </div>
-      <p>You can also use your favorites JS library with ODS data. To this end you have access to the powerful ODS API v2 to fetch the data.</p>
-    </div>
   </div>
 
   <!-- These are  the required js library if you use ODS widgets. Carefully test if you are using a framework, since they rely on AngularJS and jQuery -->
