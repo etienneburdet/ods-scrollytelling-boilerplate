@@ -21,11 +21,11 @@ export default (callbacks) => {
       progress: true
     })
     .onStepEnter((response) => {
-      const callback = callbacks[response.element.dataset.feature].enter || callbacks[response.element.dataset.feature]
+      const callback = callbacks[response.element.dataset.feature].enter
       callback(response)
     })
     .onStepExit((response) => {
-      const callback = callbacks[response.element.dataset.feature].exit || callbacks[response.element.dataset.feature]
+      const callback = callbacks[response.element.dataset.feature].exit
       callback(response)
     })
     .onStepProgress((response) => {

@@ -2,10 +2,16 @@ import './app.scss'
 
 import initScroller from './plugins/scroll.js'
 
-const toggleActiveClass = (response) => {
+const addActiveClass = (response) => {
   const feature = document.getElementById(response.element.dataset.feature)
-  feature.classList.toggle('active')
-  response.element.classList.toggle('active')
+  feature.classList.add('active')
+  response.element.classList.add('active')
+}
+
+const removeActiveClass = (response) => {
+  const feature = document.getElementById(response.element.dataset.feature)
+  feature.classList.remove('active')
+  response.element.classList.remove('active')
 }
 
 const setGaugeProgress = (response) => {
@@ -15,8 +21,14 @@ const setGaugeProgress = (response) => {
 }
 
 const callbacks = {
-  'map-idf': toggleActiveClass,
-  'chart-idf': toggleActiveClass,
+  'map-idf': {
+    enter: addActiveClass,
+    exit: removeActiveClass
+  },
+  'chart-idf': {
+    enter: addActiveClass,
+    exit: removeActiveClass
+  },
   gauge: {
     progress: setGaugeProgress
   }
