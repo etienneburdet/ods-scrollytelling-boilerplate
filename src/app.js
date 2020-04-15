@@ -1,12 +1,8 @@
 import './app.scss'
 
 import initScroller from './plugins/scroll.js'
-
-import setGaugeProgress from './components/ods-gauge/ods-gauge.js'
-import { addActiveClass, removeActiveClass } from './components/default.js'
-import longestBikePath from './components/ods-api-call/ods-api-call.js'
-
-longestBikePath()
+import { addActiveClass, removeActiveClass } from './components/active-class.js'
+import { createList, revealItem } from './components/reveal-list/reveal-list.js'
 
 const callbacks = {
   'map-idf': {
@@ -18,8 +14,11 @@ const callbacks = {
     exit: removeActiveClass
   },
   'longest-bikepath': {
-    enter: longestBikePath
+    enter: addActiveClass,
+    exit: removeActiveClass,
+    progress: revealItem
   }
 }
 
+createList()
 initScroller(callbacks)

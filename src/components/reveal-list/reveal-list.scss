@@ -1,4 +1,4 @@
-.ods-gauge-wrapper {
+.list-wrapper {
   position: sticky;
   align-self: flex-start;
   max-width: 66vh;
@@ -7,7 +7,15 @@
   transition: visibility 0s linear 300ms, padding-left 300ms ease;
 }
 
+.list-group-item {
+  visibility: hidden;
+}
+
+.list-group-item.visible {
+  visibility: visible;
+}
+
 // selector.active allow you to give a different transition style for each of your feature with only adding the .active class
-.ods-gauge-wrapper.active {
+.list-wrapper.active {
   transition: visibility 0s linear 300ms, padding-left 300ms 300ms ease;
 }
