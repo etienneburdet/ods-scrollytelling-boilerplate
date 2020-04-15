@@ -16,7 +16,8 @@
       <section id="intro">
         <div class="prose">
           <h1>Opendatasotf scrollytelling boilerplate</h1>
-          <p>This a little boilerplate that showcases different techniques of scrolly telling you can use with our data. We have more than 20k dataset you can use!</p>
+          <p>This a little boilerplate that showcases different techniques of scrolly telling you can use with our data. We have more than 20k
+            ,000 dataset you can use to tell data driven stories!</p>
           <p>This boilerplate uses the most excellent scrollama lib and takes a lot of inspiration from the Mapbox GL JS scrollytelling template. Be sure to check those out!</p>
         </div>
       </section>
@@ -54,21 +55,26 @@
           </div>
         </div>
       </section>
-      <section id="columns">
-        <div class="scrolly-side">
-          <div class="step" data-feature="gauge">
-            <div class="story-block story-block-long lefty">
-              <p>This a map from ODS widgets. It will have
-                <pre>position: fixed;</pre> until this box is out. It uses the default action of this boilerplate: add the
-                <pre>.active</pre> class to the feature.</p>
-            </div>
-          </div>
-          <figure id="gauge" class="ods-gauge-wrapper">
-            <ods-gauge class="column-feature" display-mode="circle" value="33" max="100"></ods-gauge>
-          </figure>
+    </ods-dataset-context>
+      <section id="external-libs">
+        <div class="prose">
+          <h2>External libs</h2>
+          <p>You are not limited to ODS widgets either. You can fetch the data with our API and then include it in your favorite JS libs, like mapbox GL JS, Highcharts etc.</p>
         </div>
       </section>
-    </ods-dataset-context>
+      <section id="ods-api">
+        <div class="scrolly-side">
+          <div class="step" data-feature="api-code">
+            <div class="story-block story-block-long lefty">
+              <p>To make an API call, just get the URL of the dataset, form your query and do a <code>fetch</code> with your query. With the ODS api you can filter and aggregate direcly in the query with an SQL like syntax.</p>
+              <a href="https://help.opendatasoft.com/apis/ods-search-v2/#search-api-v2">See the full documentation here</a>
+            </div>
+          </div>
+          .
+      </section>
+      <section id="mapbox">
+
+      </section>
     <!-- The ".step" is used as a selector for the scroller.
       Whenever it enters/leaves the screen the onStepEnter/onStepExit callback is fired
       data-feature will tell wich element to apply/remove the ".acitve" class on.-->

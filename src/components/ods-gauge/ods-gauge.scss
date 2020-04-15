@@ -1,6 +1,7 @@
 .ods-gauge-wrapper {
   position: sticky;
   align-self: flex-start;
+  max-width: 66vh;
   top: 25vh;
   margin: 0 21px;
   transition: visibility 0s linear 300ms, padding-left 300ms ease;
