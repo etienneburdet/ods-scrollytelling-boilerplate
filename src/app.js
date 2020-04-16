@@ -3,6 +3,7 @@ import './app.scss'
 import initScroller from './plugins/scroll.js'
 import { addActiveClass, removeActiveClass } from './components/active-class.js'
 import { createList, revealItem } from './components/reveal-list/reveal-list.js'
+import initMapbox from './components/mapbox/mapbox.js'
 
 const callbacks = {
   'map-idf': {
@@ -21,4 +22,5 @@ const callbacks = {
 }
 
 createList()
+initMapbox()
 initScroller(callbacks)
