@@ -3,7 +3,7 @@ import './app.scss'
 import initScroller from './plugins/scroll.js'
 import { addActiveClass, removeActiveClass } from './components/active-class.js'
 import { createList, revealItem } from './components/reveal-list/reveal-list.js'
-import initMapbox from './components/mapbox/mapbox.js'
+import { initMapbox, zoomIn, zoomOut } from './components/mapbox/mapbox.js'
 
 const callbacks = {
   'map-idf': {
@@ -15,9 +15,11 @@ const callbacks = {
     exit: removeActiveClass
   },
   'longest-bikepath': {
-    enter: addActiveClass,
-    exit: removeActiveClass,
     progress: revealItem
+  },
+  mapbox: {
+    enter: zoomIn,
+    exit: zoomOut
   }
 }
 

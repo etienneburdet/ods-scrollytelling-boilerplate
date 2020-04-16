@@ -6,7 +6,7 @@ const query = 'exports/geojson'
 mapboxgl.accessToken = 'pk.eyJ1IjoiZXRpZW5uZWJ1cmRldCIsImEiOiJjajVrMThvYnEyY2xsMndyeXA1cXFtb3N3In0.BdoiQvisTCL49X935MRDXw'
 
 const map = new mapboxgl.Map({
-  container: 'map',
+  container: 'mapbox',
   style: 'mapbox://styles/mapbox/dark-v10',
   center: [2.349, 48.831],
   zoom: 10.48,
@@ -15,10 +15,9 @@ const map = new mapboxgl.Map({
   scrollZoom: false
 })
 
-
 const addDataLayer = (data) => {
   map.addLayer({
-    id: 'coupures-urbaines',
+    id: 'piste-cyclables',
     source: {
       type: 'geojson',
       data: data
@@ -30,9 +29,30 @@ const addDataLayer = (data) => {
   })
 }
 
-export default () => {
+const zoomIn = () => {
+  console.log('Zooooooom in')
+  map.flyTo({
+    center: [2.349, 48.831],
+    zoom: 13.48,
+    pitch: 0.00,
+    bearing: 0.00
+  })
+}
 
+const zoomOut = () => {
+  console.log('Zooooooom ouuuuut')
+  map.flyTo({
+    center: [2.349, 48.831],
+    zoom: 10.48,
+    pitch: 0.00,
+    bearing: 0.00
+  })
+}
+
+const initMapbox = () => {
   fetch(baseUrl + query)
     .then(response => response.json())
     .then(addDataLayer)
 }
+
+export { zoomIn, zoomOut, initMapbox }

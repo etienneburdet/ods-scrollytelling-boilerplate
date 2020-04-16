@@ -56,29 +56,42 @@
         </div>
       </section>
     </ods-dataset-context>
-      <section id="external-libs">
-        <div class="prose">
-          <h2>External libs</h2>
-          <p>You are not limited to ODS widgets either. You can fetch the data with our API and then include it in your favorite JS libs, like mapbox GL JS, Highcharts etc.</p>
-        </div>
-      </section>
-      <section id="ods-api">
-        <div class="scrolly-side">
-          <div class="step" data-feature="longest-bikepath">
-            <div class="story-block lefty">
-              <p>To make an API call, just get the URL of the dataset, form your query and do a <code>fetch</code> with your query. With the ODS api you can filter and aggregate direcly in the query with an SQL like syntax.</p>
-              <a href="https://help.opendatasoft.com/apis/ods-search-v2/#search-api-v2">See the full documentation here</a>
-            </div>
-          </div>
-          <div id="longest-bikepath" class="list-wrapper">
-            <h3>Cities with the most bikepaths in Ile-de-France:</h3>
-            <ul id="top-cities-bikepath"></ul>
+    <section id="external-libs">
+      <div class="prose">
+        <h2>External libs</h2>
+        <p>You are not limited to ODS widgets either. You can fetch the data with our API and then include it in your favorite JS libs, like mapbox GL JS, Highcharts etc.</p>
+      </div>
+    </section>
+    <section id="ods-api">
+      <div class="scrolly-side">
+        <div class="step" data-feature="longest-bikepath">
+          <div class="story-block lefty">
+            <p>To make an API call, just get the URL of the dataset, form your query and do a <code>fetch</code> with your query. With the ODS api you can filter and aggregate direcly in the query with an SQL like syntax.</p>
+            <a href="https://help.opendatasoft.com/apis/ods-search-v2/#search-api-v2">See the full documentation here</a>
           </div>
         </div>
-      </section>
-      <section id="mapbox">
-        <div id="map"></div>
-      </section>
+        <div id="longest-bikepath" class="list-wrapper">
+          <h3>Cities with the most bikepaths in Ile-de-France:</h3>
+          <ul id="top-cities-bikepath"></ul>
+        </div>
+      </div>
+    </section>
+    <section id="plugins">
+      <div id="mapbox-scrollbo">
+        <div id="mapbox" class="fullscreen-feature"></div>
+        <div class="step" data-feature="mapbox">
+          <div class="story-block lefty">
+            <p>With those API call, you can fetch data and then inject them into your favorite plugins, like Mapbox GL JS.</p>
+          </div>
+        </div>
+        <div class="step" data-feature="mapbox-fly">
+          <div class="story-block righty">
+            <p>Then you can trigger any callback you want when steps enter and leave. Here we use a <code>flyTo</code> method.</p>
+            <p>If you feel async JS is too painful, stick to the ODS widgets, they will do the job for you 😄</p>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- The ".step" is used as a selector for the scroller.
       Whenever it enters/leaves the screen the onStepEnter/onStepExit callback is fired
       data-feature will tell wich element to apply/remove the ".acitve" class on.-->

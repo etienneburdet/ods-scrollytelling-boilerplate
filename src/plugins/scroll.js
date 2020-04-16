@@ -1,5 +1,18 @@
 import scrollama from 'scrollama'
 
+// default functions if you add nothing in the callbacks mapping
+const addActiveClass = (response) => {
+  const feature = document.getElementById(response.element.dataset.feature)
+  feature.classList.add('active')
+  response.element.classList.add('active')
+}
+
+const removeActiveClass = (response) => {
+  const feature = document.getElementById(response.element.dataset.feature)
+  feature.classList.remove('active')
+  response.element.classList.remove('active')
+}
+
 export default (callbacks) => {
   const scroller = scrollama()
 
@@ -21,11 +34,11 @@ export default (callbacks) => {
       progress: true
     })
     .onStepEnter((response) => {
-      const callback = callbacks[response.element.dataset.feature].enter
+      const callback = callbacks[response.element.dataset.feature].enter || addActiveClass // If you don't specify a call, it widd add .active class on
       callback(response)
     })
     .onStepExit((response) => {
-      const callback = callbacks[response.element.dataset.feature].exit
+      const callback = callbacks[response.element.dataset.feature].exit || removeActiveClass
       callback(response)
     })
     .onStepProgress((response) => {
