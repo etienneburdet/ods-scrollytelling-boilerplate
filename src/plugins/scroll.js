@@ -34,18 +34,18 @@ export default (callbacks) => {
       progress: true
     })
     .onStepEnter((response) => {
-      const callback = callbacks[response.element.dataset.feature].enter || addActiveClass // If you don't specify a call, it widd add .active class on
+      const stepCallbacks = callbacks[response.element.dataset.feature] || {}
+      const callback = stepCallbacks.enter || addActiveClass // If you don't specify a call, it widd add .active class on
       callback(response)
     })
     .onStepExit((response) => {
-      const callback = callbacks[response.element.dataset.feature].exit || removeActiveClass
+      const stepCallbacks = callbacks[response.element.dataset.feature] || {}
+      const callback = stepCallbacks.exit || removeActiveClass
       callback(response)
     })
     .onStepProgress((response) => {
-      const progressCallback = callbacks[response.element.dataset.feature].progress
-      if (progressCallback) {
-        progressCallback(response)
-      }
+      const stepCallbacks = callbacks[response.element.dataset.feature] || {}
+      stepCallbacks.progress && stepCallbacks.progress(response)
     })
 
   window.addEventListener('resize', scroller.resize)

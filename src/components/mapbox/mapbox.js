@@ -30,7 +30,6 @@ const addDataLayer = (data) => {
 }
 
 const zoomIn = () => {
-  console.log('Zooooooom in')
   map.flyTo({
     center: [2.349, 48.831],
     zoom: 13.48,
@@ -40,7 +39,6 @@ const zoomIn = () => {
 }
 
 const zoomOut = () => {
-  console.log('Zooooooom ouuuuut')
   map.flyTo({
     center: [2.349, 48.831],
     zoom: 10.48,

@@ -4,10 +4,8 @@
 }
 
 .column-feature {
-  max-width: 66vw;
-}
-
-.scrolly-side {
-  display: flex;
-  margin: 33vh auto;
+  position: sticky;
+  align-self: flex-start;
+  max-width: 66%;
+  top: 10vh;
 }
