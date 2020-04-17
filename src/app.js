@@ -1,6 +1,8 @@
 import './app.scss'
 
 import initScroller from './plugins/scroll.js'
+import colorCode from './plugins/prism.js'
+
 import { addActiveClass, removeActiveClass } from './components/active-class.js'
 import { createList, revealItem } from './components/reveal-list/reveal-list.js'
 import { initMapbox, zoomIn, zoomOut } from './components/mapbox/mapbox.js'
@@ -23,6 +25,7 @@ const callbacks = {
   }
 }
 
+colorCode()
 createList()
 initMapbox()
 initScroller(callbacks)
