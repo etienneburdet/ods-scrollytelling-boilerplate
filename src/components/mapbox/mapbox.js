@@ -5,15 +5,15 @@ const query = 'exports/geojson'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZXRpZW5uZWJ1cmRldCIsImEiOiJjajVrMThvYnEyY2xsMndyeXA1cXFtb3N3In0.BdoiQvisTCL49X935MRDXw'
 
-// const map = new mapboxgl.Map({
-//   container: 'mapbox',
-//   style: 'mapbox://styles/mapbox/dark-v10',
-//   center: [2.349, 48.831],
-//   zoom: 10.48,
-//   pitch: 0.00,
-//   bearing: 0.00,
-//   scrollZoom: false
-// })
+const map = new mapboxgl.Map({
+  container: 'mapbox',
+  style: 'mapbox://styles/mapbox/dark-v10',
+  center: [2.349, 48.831],
+  zoom: 10.48,
+  pitch: 0.00,
+  bearing: 0.00,
+  scrollZoom: false
+})
 
 const addDataLayer = (data) => {
   map.addLayer({

@@ -65,30 +65,22 @@
         <div id="steps">
           <div class="step" data-feature="api-endpoint">
             <div class="story-block story-block-col">
-              <p>To make an API call, just get the URL of the dataset, form your query and do a <code>fetch</code> with your query. With the ODS api you can filter and aggregate direcly in the query with an SQL like syntax.</p>
-              <a href="https://help.opendatasoft.com/apis/ods-search-v2/#search-api-v2">See the full documentation here</a>
+              <p>To make an API call, first get the base URL of the dataset. It's the same you have in your browser</p>
             </div>
           </div>
           <div class="step" data-feature="api-query">
             <div class="story-block story-block-col">
-              <p>To make an API call, just get the URL of the dataset, form your query and do a <code>fetch</code> with your query. With the ODS api you can filter and aggregate direcly in the query with an SQL like syntax.</p>
+              <p>Then, you can filter and aggregetate your resluts with an SQL-like syntax. Be sure to load as little data as possible for a faster page!</p>
               <a href="https://help.opendatasoft.com/apis/ods-search-v2/#search-api-v2">See the full documentation here</a>
             </div>
           </div>
           <div class="step" data-feature="api-callback">
             <div class="story-block story-block-col">
-              <p>To make an API call, just get the URL of the dataset, form your query and do a <code>fetch</code> with your query. With the ODS api you can filter and aggregate direcly in the query with an SQL like syntax.</p>
-              <a href="https://help.opendatasoft.com/apis/ods-search-v2/#search-api-v2">See the full documentation here</a>
+              <p>Finally, fetch the data using <code>fetch</code> (or using <a href="https://www.npmjs.com/package/axios">axios</a>) and use the callback to inject your data in your page.</p>
             </div>
           </div>
-          <div class="step" data-feature="api-callback">
-            <div class="story-block story-block-col">
-              <p>To make an API call, just get the URL of the dataset, form your query and do a <code>fetch</code> with your query. With the ODS api you can filter and aggregate direcly in the query with an SQL like syntax.</p>
-              <a href="https://help.opendatasoft.com/apis/ods-search-v2/#search-api-v2">See the full documentation here</a>
-            </div>
-          </div>
-        </div>
-        <div class="feature-col">
+          <div class="feature-col">
+            <pre>
               <code id="api-endpoint" class="language-javascript codeline">const endpoint = 'https://data.opendatasoft.com/api/v2/catalog/datasets/amenagements-velo-en-ile-de-france%40datailedefrance/'</code>
               <code id="api-query" class="language-javascript codeline">const query = 'aggregates?select=sum(longueur) as long_tot, count(*) as num_bikepath&group_by=nom_com&limit=10'</code>
               <code id="api-callback" class="language-javascript codeline">
@@ -96,14 +88,16 @@
                   .then(res => res.json()) //axios.get(…) would avoid that 😉
                   .then(doSomethingWithData)
               </code>
+            </pre>
+          </div>
         </div>
+      </div>
     </section>
     <section id="reveal-list">
       <div class="scroll-columns">
         <div class="step" data-feature="reveal-list">
           <div class="story-block story-block-col">
             <p>Going full JS alows for more complex actions, such as using the progress inside the step. But, if asynchronous JS seems to complicated, you can still do a lot with the ODS widgets 😉.</p>
-            <a href="https://help.opendatasoft.com/apis/ods-search-v2/#search-api-v2">👉See the full API documentation here</a>
           </div>
         </div>
         <div id="reveal-list" class="feature-col">
@@ -113,24 +107,24 @@
       </div>
     </section>
     <section>
-    <div class="scroll-columns">
-      <div id="mapbox-steps">
-        <div class="step" data-feature="mapbox-fly">
-          <div class="story-block story-block-col">
-            <p>Then you can trigger any callback you want when steps enter and leave. Here we use a <code>flyTo</code> method.</p>
-            <p>If you feel async JS is too painful, stick to the ODS widgets, they will do the job for you 😄</p>
+      <div class="scroll-columns">
+        <div id="mapbox-steps">
+          <div class="step" data-feature="mapbox-fly">
+            <div class="story-block story-block-col">
+              <p>Then you can trigger any callback you want when steps enter and leave. Here we use a <code>flyTo</code> method.</p>
+              <p>If you feel async JS is too painful, stick to the ODS widgets, they will do the job for you 😄</p>
+            </div>
+          </div>
+          <div class="step" data-feature="mapbox">
+            <div class="story-block story-block-col">
+              <p>With those API call, you can fetch data and then inject them into your favorite plugins, like Mapbox GL JS.</p>
+            </div>
           </div>
         </div>
-        <div class="step" data-feature="mapbox">
-          <div class="story-block story-block-col">
-            <p>With those API call, you can fetch data and then inject them into your favorite plugins, like Mapbox GL JS.</p>
-          </div>
+        <div class="feature-col">
+          <div name="Bikepath of Ile-de-France" id="mapbox"></div>
         </div>
       </div>
-      <div class="feature-col">
-        <div name="Bikepath of Ile-de-France" id="mapbox"></div>
-      </div>
-    </div>
     </section>
     <!-- The ".step" is used as a selector for the scroller.
       Whenever it enters/leaves the screen the onStepEnter/onStepExit callback is fired
