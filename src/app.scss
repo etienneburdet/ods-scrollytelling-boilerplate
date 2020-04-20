@@ -11,25 +11,13 @@ body {
   font-family: sans-serif;
 }
 
-.scrolly-side {
+.scroll-columns {
   display: flex;
-}
-
-.scrollbox {
-  max-width: 987px;
+  max-width: 89rem;
   margin: 0 auto;
-  border: 1px solid black;
-  border-radius: 4px;
 }
 
 .prose {
   max-width: 54rem;
   margin: 21rem auto
-}
-
-@media (max-width: 768px) {
-  #features {
-    width: 90vw;
-    margin: 0 auto;
-  }
 }

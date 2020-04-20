@@ -22,81 +22,99 @@
     </section>
     <ods-dataset-context context="velo" velo-domain="data.opendatasoft.com" velo-dataset="amenagements-velo-en-ile-de-france@datailedefrance">
       <section id="fullsrceen">
-        <div id="fullscreen">
-          <!-- The .step div takes the full screen, inside it you want to place your text etc. which is typically not fullscreen -->
-          <map id="map-idf" class="ods-map-wrapper">
-            <ods-map class="fullscreen-feature" location="10,48.831,2.349" scroll-wheel-zoom="false" display-control="0">
-              <ods-map-layer context="velo" color="#128317"></ods-map-layer>
-            </ods-map>
-          </map>
-          <div class="step" data-feature="map-idf">
-            <div class="story-block lefty">
-              <p>This a map from ODS widgets. It will have
-                <pre>position: fixed;</pre> until this box is out. It uses the default action of this boilerplate: add the
-                <pre>.active</pre> class to the feature.</p>
-            </div>
+        <!-- The .step div takes the full screen, inside it you want to place your text etc. which is typically not fullscreen -->
+        <map id="map-idf" class="ods-map-wrapper">
+          <ods-map class="fullscreen-feature" location="10,48.831,2.349" scroll-wheel-zoom="false" display-control="0">
+            <ods-map-layer context="velo" color="#128317"></ods-map-layer>
+          </ods-map>
+        </map>
+        <div class="step" data-feature="map-idf">
+          <div class="story-block story-block-over lefty">
+            <p>This a map from ODS widgets. It will have
+              <pre>position: fixed;</pre> until this box is out. It uses the default action of this boilerplate: add the
+              <pre>.active</pre> class to the feature.</p>
           </div>
-          <figure id="chart-idf" class="ods-chart-wrapper">
-            <ods-chart class="fullscreen-feature" align-month="true">
-              <ods-chart-query context="velo" field-x="highway" maxpoints="50">
-                <ods-chart-serie expression-y="osm_id" chart-type="column" function-y="AVG" color="#e74c3c" scientific-display="true">
-                </ods-chart-serie>
-              </ods-chart-query>
-            </ods-chart>
-          </figure>
-          <div class="step" data-feature="chart-idf">
-            <div class="story-block centered">
-              <p>Sticky is the most common behavior in scrollytelling, but you can add any transition you want. This chart from ODS widgets, slides in and fades. To do that you have to specify callbacks when entering and exiting the step in the
-                callback mapping of
-                <pre>src/app.js</pre>
-              </p>
-              <p>You can also style those text box as you wish! Here we centered it 😄</p>
-            </div>
+        </div>
+        <figure id="chart-idf" class="ods-chart-wrapper">
+          <ods-chart class="fullscreen-feature" align-month="true">
+            <ods-chart-query context="velo" field-x="highway" maxpoints="50">
+              <ods-chart-serie expression-y="osm_id" chart-type="column" function-y="AVG" color="#e74c3c" scientific-display="true">
+              </ods-chart-serie>
+            </ods-chart-query>
+          </ods-chart>
+        </figure>
+        <div class="step" data-feature="chart-idf">
+          <div class="story-block story-block-over centered">
+            <p>Sticky is the most common behavior in scrollytelling, but you can add any transition you want. This chart from ODS widgets, slides in and fades. To do that you have to specify callbacks when entering and exiting the step in the
+              callback mapping of
+              <pre>src/app.js</pre>
+            </p>
+            <p>You can also style those text box as you wish! Here we centered it 😄</p>
           </div>
         </div>
       </section>
     </ods-dataset-context>
     <section id="external-libs">
-      <div class="scrollbox">
-        <div class="prose">
-          <h2>External libs</h2>
-          <p>You are not limited to ODS widgets either. You can fetch the data with our API and then include it in your favorite JS libs, like mapbox GL JS, Highcharts etc.</p>
-        </div>
-        <div class="scrolly-side">
-          <div class="step step-side" data-feature="api-progress">
-            <div class="story-block">
+      <div class="prose">
+        <h2>External libs</h2>
+        <p>You are not limited to ODS widgets either. You can fetch the data with our API and then include it in your favorite JS libs, like mapbox GL JS, Highcharts etc.</p>
+      </div>
+      <div class="scroll-columns">
+        <div id="steps">
+          <div class="step" data-feature="api-endpoint">
+            <div class="story-block story-block-col">
               <p>To make an API call, just get the URL of the dataset, form your query and do a <code>fetch</code> with your query. With the ODS api you can filter and aggregate direcly in the query with an SQL like syntax.</p>
               <a href="https://help.opendatasoft.com/apis/ods-search-v2/#search-api-v2">See the full documentation here</a>
             </div>
           </div>
-          <div id="api-progress" class="column-feature">
-            <pre>
-              <code class="language-javascript">
-                const endpoint= 'https://data.opendatasoft.com/api/v2/catalog/datasets/amenagements-velo-en-ile-de-france%40datailedefrance/'
-                const query = 'aggregates?select=sum(longueur) as long_tot, count(*) as num_bikepath&group_by=nom_com&limit=10'
-                fetch(endpoint + query)
-                  .then(res => res.json()) //axios.get(…) would avoid that 😉
-                  .then(doSomethingWithData)
-              </code>
-            </pre>
-            <h3>Cities with the most bikepaths in Ile-de-France:</h3>
-            <ul id="top-cities-bikepath"></ul>
+          <div class="step" data-feature="api-query">
+            <div class="story-block story-block-col">
+              <p>To make an API call, just get the URL of the dataset, form your query and do a <code>fetch</code> with your query. With the ODS api you can filter and aggregate direcly in the query with an SQL like syntax.</p>
+              <a href="https://help.opendatasoft.com/apis/ods-search-v2/#search-api-v2">See the full documentation here</a>
+            </div>
+          </div>
+          <div class="step" data-feature="api-callback">
+            <div class="story-block story-block-col">
+              <p>To make an API call, just get the URL of the dataset, form your query and do a <code>fetch</code> with your query. With the ODS api you can filter and aggregate direcly in the query with an SQL like syntax.</p>
+              <a href="https://help.opendatasoft.com/apis/ods-search-v2/#search-api-v2">See the full documentation here</a>
+            </div>
+          </div>
+          <div class="step" data-feature="api-callback">
+            <div class="story-block story-block-col">
+              <p>To make an API call, just get the URL of the dataset, form your query and do a <code>fetch</code> with your query. With the ODS api you can filter and aggregate direcly in the query with an SQL like syntax.</p>
+              <a href="https://help.opendatasoft.com/apis/ods-search-v2/#search-api-v2">See the full documentation here</a>
+            </div>
           </div>
         </div>
-        <div class="scrolly-side">
+        <div id="api-progress" class="feature-col">
+          <pre>
+              <code class="language-javascript">
+                <p id="api-endpoint">const endpoint= 'https://data.opendatasoft.com/api/v2/catalog/datasets/amenagements-velo-en-ile-de-france%40datailedefrance/'</p>
+                <p id="api-query">const query = 'aggregates?select=sum(longueur) as long_tot, count(*) as num_bikepath&group_by=nom_com&limit=10'</p>
+                <p id="api-callback">fetch(endpoint + query)
+                    .then(res => res.json()) //axios.get(…) would avoid that 😉
+                    .then(doSomethingWithData)</p>
+              </code>
+            </pre>
+          <h3>Cities with the most bikepaths in Ile-de-France:</h3>
+          <ul id="top-cities-bikepath"></ul>
+        </div>
+      </div>
+      <div class="scroll-columns">
+        <div id="mapbox-steps">
           <div class="step" data-feature="mapbox-fly">
-            <div class="story-block righty">
+            <div class="story-block story-block-col">
               <p>Then you can trigger any callback you want when steps enter and leave. Here we use a <code>flyTo</code> method.</p>
               <p>If you feel async JS is too painful, stick to the ODS widgets, they will do the job for you 😄</p>
             </div>
-            <div id="mapbox" class="column-feature"></div>
-            <div class="step" data-feature="mapbox">
-              <div class="story-block story-block-side">
-                <p>With those API call, you can fetch data and then inject them into your favorite plugins, like Mapbox GL JS.</p>
-              </div>
+          </div>
+          <div class="step" data-feature="mapbox">
+            <div class="story-block story-block-col">
+              <p>With those API call, you can fetch data and then inject them into your favorite plugins, like Mapbox GL JS.</p>
             </div>
           </div>
         </div>
+        <div id="mapbox" class="feature-col"></div>
       </div>
     </section>
     <!-- The ".step" is used as a selector for the scroller.

@@ -16,7 +16,7 @@ const callbacks = {
   }
 }
 
+initScroller(callbacks)
 colorCode()
 createList()
 initMapbox()
-initScroller(callbacks)

@@ -1,10 +1,12 @@
 .story-block {
+  padding: 1rem 3rem;
+  width: 34rem;
+}
+
+.story-block-over {
   border: 1px solid black;
   color: #444;
   background-color: #fafafa;
-  padding: 21px 55px;
-  line-height: 21px;
-  font-size: 13px;
 }
 
 .story-block-long {
@@ -22,8 +24,6 @@
 .lefty {
   width: 33vw;
   margin-left: 5vw;
-  color: #444;
-  background-color: #fafafa;
 }
 
 .righty {
@@ -38,16 +38,10 @@
   margin: 25vh 0;
 }
 
-.step-side {
-  width: 34%;
-}
-
 .step.active {
   opacity: 0.9;
 }
 
 .step div {
-  padding: 21px 45px;
-  line-height: 21px;
-  font-size: 13px;
+  padding: 1rem 3rem;
 }
