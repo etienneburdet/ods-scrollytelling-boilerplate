@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- These are  the required CSS files if you use ODS widgets -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://opendatasoft.github.io/ods-widgets/dist/ods-widgets.css">
+  <!-- <link rel="stylesheet" href="https://opendatasoft.github.io/ods-widgets/dist/ods-widgets.css"> -->
 </head>
 
 <body>
@@ -79,18 +79,13 @@
               <p>Finally, fetch the data using <code>fetch</code> (or using <a href="https://www.npmjs.com/package/axios">axios</a>) and use the callback to inject your data in your page.</p>
             </div>
           </div>
-          <div class="feature-col">
-            <pre>
-              <code id="api-endpoint" class="language-javascript codeline">const endpoint = 'https://data.opendatasoft.com/api/v2/catalog/datasets/amenagements-velo-en-ile-de-france%40datailedefrance/'</code>
-              <code id="api-query" class="language-javascript codeline">const query = 'aggregates?select=sum(longueur) as long_tot, count(*) as num_bikepath&group_by=nom_com&limit=10'</code>
-              <code id="api-callback" class="language-javascript codeline">
-                fetch(endpoint + query)
-                  .then(res => res.json()) //axios.get(…) would avoid that 😉
-                  .then(doSomethingWithData)
-              </code>
-            </pre>
-          </div>
         </div>
+        <pre class="feature-col language-javascript"><code id="api-endpoint" class="codeline">const endpoint = 'https://data.opendatasoft.com/api/v2/catalog/datasets/amenagements-velo-en-ile-de-france%40datailedefrance/'</code>
+<code id="api-query" class="codeline">const query = 'aggregates?select=sum(longueur) as long_tot, count(*) as num_bikepath&group_by=nom_com&limit=10'</code>
+<code id="api-callback" class="codeline">fetch(endpoint + query)
+  .then(res => res.json()) //axios.get(…) would avoid that 😉
+  .then(doSomethingWithData)</code>
+        </pre>
       </div>
     </section>
     <section id="reveal-list">
@@ -126,9 +121,6 @@
         </div>
       </div>
     </section>
-    <!-- The ".step" is used as a selector for the scroller.
-      Whenever it enters/leaves the screen the onStepEnter/onStepExit callback is fired
-      data-feature will tell wich element to apply/remove the ".acitve" class on.-->
   </div>
 
   <!-- These are  the required js library if you use ODS widgets. Carefully test if you are using a framework, since they rely on AngularJS and jQuery -->
