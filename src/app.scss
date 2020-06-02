@@ -1,10 +1,11 @@
+@import './components/features.scss';
+@import './components/steps.scss';
+@import './components/story-blocks.scss';
 @import './components/ods-map.scss';
 @import './components/ods-chart.scss';
-@import './components/reveal-list/reveal-list.scss';
-@import './components/story-block.scss';
-@import './components/features.scss';
-@import './components/mapbox/mapbox.scss';
-@import './components/codebox/api-call.scss';
+@import './components/reveal-list/style.scss';
+@import './components/mapbox/style.scss';
+@import './components/codebox/style.scss';
 
 body {
   margin: 0;

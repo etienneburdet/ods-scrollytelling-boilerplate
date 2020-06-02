@@ -1,0 +1,17 @@
+.story-block {
+  padding: 1rem 3rem;
+  width: 34rem;
+}
+
+.story-block-over {
+  border: 1px solid black;
+  color: #444;
+  background-color: #fafafa;
+}
+
+.story-block-long {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
