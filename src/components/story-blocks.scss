@@ -1,6 +1,6 @@
 .story-block {
   padding: 1rem 3rem;
-  width: 34rem;
+  width: 33vh;
 }
 
 .story-block-over {
@@ -27,7 +27,7 @@
 }
 
 .story-block-explain {
-  width: 68rem;
+  width: 50vh;
   padding-top: 2rem;
   position: relative;
   &:before {
@@ -37,4 +37,10 @@
     top: 0.25rem;
     left: 0.25rem;
   }
+}
+
+.story-block-outro {
+  margin: 10vh auto;
+  padding: 33vh 0;
+  width: 50vh;
 }

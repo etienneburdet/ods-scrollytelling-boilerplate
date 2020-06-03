@@ -16,6 +16,8 @@ const map = new mapboxgl.Map({
   scrollZoom: false
 })
 
+const mapContainer = document.getElementById('mapbox')
+
 const addDataLayer = (data) => {
   console.log('fetched GeoJson')
   map.addLayer({
@@ -31,22 +33,27 @@ const addDataLayer = (data) => {
   })
 }
 
-const zoomIn = () => {
+const zoomIn = (response) => {
+  console.log('flyyyyyyyy')
   map.flyTo({
     center: [2.349, 48.831],
-    zoom: 13.48,
+    zoom: 15.48,
     pitch: 0.00,
     bearing: 0.00
   })
+  response.element.classList.add('active')
+  mapContainer.classList.remove('fade-out')
 }
 
-const zoomOut = () => {
+const zoomOut = (response) => {
   map.flyTo({
     center: [2.349, 48.831],
     zoom: 10.48,
     pitch: 0.00,
     bearing: 0.00
   })
+  response.element.classList.remove('active')
+  mapContainer.classList.add('fade-out')
 }
 
 const initMapbox = () => {
