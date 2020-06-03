@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>ODS Widgets Minimal Boilerplate</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- These are  the required CSS files if you use ODS widgets -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://opendatasoft.github.io/ods-widgets/dist/ods-widgets.css">
+  <link href='https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css' rel='stylesheet' />
+</head>
+
+<body>
+  <div class="container-fluid" ng-app="ods-widgets">
+    <section id="intro">
+      <div class="prose">
+        <h1>Opendatasotf scrollytelling boilerplate</h1>
+        <p>Hello datastories fans 👋! You will find here some explainations on how to create a <i>scrollytelling</i> page. It serves as an introduction to both Scrollama and the Opendatasoft Search API V2. We have more than 20k,000 dataset you can use and scrollytelling can create some dramatic effects. Let's scroll and see how it goes!</p>
+      </div>
+    </section>
+    <!-- The .step div takes the full screen, inside it you want to place your text etc. which is typically not fullscreen -->
+    <div class="prose">
+      <h3>ODS Widgets</h3>
+      <p>Opendatasoft data can be consumed through a set of widgets. They will do all the data fetching and filtering work for you.
+      Let's try with some fullscreen features!</p>
+    </div>
+    <section id="ods-map">
+      <div id="map-idf" class="ods-map-wrapper">
+        <ods-dataset-context context="velo" velo-domain="data.opendatasoft.com" velo-dataset="amenagements-velo-en-ile-de-france@datailedefrance">
+          <ods-map class="fullscreen-feature" location="15,48.831,2.349" scroll-wheel-zoom="false" display-control="0" basemap="jawg.light">
+            <ods-map-layer context="velo" color="#128317"></ods-map-layer>
+          </ods-map>
+        </ods-dataset-context>
+      </div>
+      <div class="step" data-feature="map-idf">
+        <div class="story-block story-block-over story-block-left">
+          <p>When this box enters the screen it wall add the <code>.active</code> class to the map,
+            which will trigger an opacity change with <code>.ods-map-wrapper.active</code>.</p>
+        </div>
+      </div>
+    </section>
+    <section id="ods-chart">
+      <figure id="chart-idf" class="ods-chart-wrapper">
+        <ods-dataset-context context="velo" velo-domain="data.opendatasoft.com" velo-dataset="amenagements-velo-en-ile-de-france@datailedefrance">
+          <ods-chart class="fullscreen-feature" align-month="true">
+            <ods-chart-query context="velo" field-x="highway" maxpoints="50">
+              <ods-chart-serie expression-y="osm_id" chart-type="column" function-y="AVG" color="#e74c3c" scientific-display="true">
+              </ods-chart-serie>
+            </ods-chart-query>
+          </ods-chart>
+        </ods-dataset-context>
+      </figure>
+      <div class="step step-chart" data-feature="chart-idf">
+        <div class="story-block story-block-over story-block-center story-block-crazy">
+          <p>Sticky is the most common behavior in scrollytelling: the features scrolls in, stay in place while the text box flies over it and then scrolls out. But you can add any transition you want, like sliding from the right.
+            All you need to do is to customize the transition on <code>.active</code>.
+          </p>
+          <p>You can also style those text box as you wish!😄</p>
+        </div>
+      </div>
+    </section>
+    <section id="step-details">
+      <div id="octonyancat" class="fullscreen-feature">
+        <!-- <img src="img/nyanocto.gif" alt="a cool gif really"> -->
+      </div>
+      <div class="step step-explain" data-feature="octonyancat">
+        <div class="story-block story-block-over story-block-explain">
+          <p>There are two parts for the narrative block: the step container and the text-box.
+            The step container is the one that will trigger action when crossing the threshold (here middle of the screen) and has the <code>.step</code> class.
+            The text-box is what is actually displayed on the screen.
+          </p>
+          <p>
+            To size your step <code>vh</code> is the easiest and most natural way. Usuallay you want a value more than <code>100vh</code> for the whole step, so that it can enter and leave the screen before anything else happens.
+            To determine how big your step is—that is how long your user has to scroll until normal scrolling resum—use the top and bottom padding on <code>.step</code>.
+            To separate narrative element from one another—that is create blank, normal scrolling—use
+          </p>
+          <p>
+            In this boilerplate, the <code>data-feature</code> attribute of the step will reference the id of the feature you want to add the <code>.active</code> (default behavior).
+          </p>
+        </div>
+      </div>
+    </section>
+    <section id="api-call">
+      <div class="prose">
+        <h2>External libs</h2>
+        <p>
+          You are not limited to ODS widgets or full screen features and you can even specify your custom JS callbacks!
+          You can fetch the data with our seach API and then include it in your favorite JS libs, like mapbox GL JS, Highcharts etc.
+          Let's also also try a two columns display, where multiple steps scroll along one feature!
+        </p>
+      </div>
+      <div class="scroll-columns">
+        <div id="steps">
+          <div class="step" data-feature="api-endpoint">
+            <div class="story-block story-block-col">
+              <p>To make an API call, first get the <a href="https://data.opendatasoft.com/explore/dataset/amenagements-velo-en-ile-de-france0%40datailedefrance/table/">base URL of the dataset</a></p>
+              <p>👉You have 20k+ to choose from our <a href="https://data.opendatasoft.com/pages/home/">data network!</a></p>
+            </div>
+          </div>
+          <div class="step" data-feature="api-query">
+            <div class="story-block story-block-col">
+              <p>Then, you can filter and aggregetate your resluts with an SQL-like syntax. Be sure to load as little data as possible for a faster page!</p>
+              <a href="https://help.opendatasoft.com/apis/ods-search-v2/#search-api-v2">See the full documentation here</a>
+            </div>
+          </div>
+          <div class="step" data-feature="api-callback">
+            <div class="story-block story-block-col">
+              <p>Finally, fetch the data using <code>fetch</code> and use the callback to inject your data in your page.</p>
+            </div>
+          </div>
+        </div>
+        <div class="feature-col">
+          <pre class="language-javascript">
+<code id="api-endpoint" class="codeline">const endpoint = 'https://data.opendatasoft.com/api/v2/catalog/datasets/amenagements-velo-en-ile-de-france%40datailedefrance/'</code>
+
+<code id="api-query" class="codeline">const query = 'aggregates?select=sum(longueur) as long_tot, count(*) as num_bikepath&group_by=nom_com&sort=-longueur&limit=10'</code>
+
+<code id="api-callback" class="codeline">fetch(endpoint + query)
+  .then(res => res.json())
+  .then(doSomethingWithData)</code>
+          </pre>
+        </div>
+      </div>
+    </section>
+    <section id="reveal-list">
+      <div class="scroll-columns">
+        <div class="step" data-feature="reveal-list">
+          <div class="story-block story-block-col">
+            <p>
+              Going full JS alows for more complex actions, such as using the progress inside the step. To do so, you have to specify which callback you want to use.
+              This boilerplate lets you prefconfigure callbacks for <code>enter, leave & progess</code> events.
+            </p>
+            <p>
+              To do so, map them in the <code>app.js</code> with the name you put in the <code>data-feature</code>.
+              The specified callback will then replace the default behavior of adding <code>.active</code> the div with matching id.
+            </p>
+          </div>
+        </div>
+        <div id="reveal-list" class="feature-col">
+          <h3>Cities with the most bikepaths in Ile-de-France:</h3>
+          <ul id="top-cities-bikepath"></ul>
+        </div>
+      </div>
+    </section>
+    <section id="mapbox-gl">
+      <div id="mapbox" class="fullscreen-feature mapbox-map"></div>
+      <div class="step" data-feature="mapbox">
+        <div class="story-block story-block-over">
+          <p>You can combine custom callbacks with any of your favorite library. Here we use MapboxGL <code>flyTo</code>!</p>
+        </div>
+      </div>
+      <div class="story-block story-block-outro">
+        <p>Remember, this example shows a lot of possibilities at once but you are unlikely to use them all.
+        As with all dramatic effects: less is more!</p>
+        <p>If you want inspiration for your datastories, check-out the most excellent <a href="http://www.pudding.cool">www.pudding.cool</a> (authors of Scrollama!)</p>
+        <p>Now, the hardest part is to find a story to tell. Happy scrolling! 🚀</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- These are  the required js library if you use ODS widgets. Carefully test if you are using a framework, since they rely on AngularJS and jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-sanitize.min.js"></script>
+  <script type="text/javascript" src="https://opendatasoft.github.io/ods-widgets/dist/ods-widgets.js"></script>
+<script type="text/javascript" src="app.bundle.js"></script></body>
+
+</html>
