@@ -8,6 +8,7 @@
   <!-- These are  the required CSS files if you use ODS widgets -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://opendatasoft.github.io/ods-widgets/dist/ods-widgets.css">
+  <link href='https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css' rel='stylesheet' />
 </head>
 
 <body>
@@ -61,7 +62,7 @@
     </section>
     <section id="step-details">
       <div id="octonyancat" class="fullscreen-feature">
-        <img src="img/nyanocto.gif" alt="a cool gif really">
+        <!-- <img src="img/nyanocto.gif" alt="a cool gif really"> -->
       </div>
       <div class="step step-explain" data-feature="octonyancat">
         <div class="story-block story-block-over story-block-explain">
@@ -94,6 +95,7 @@
           <div class="step" data-feature="api-endpoint">
             <div class="story-block story-block-col">
               <p>To make an API call, first get the <a href="https://data.opendatasoft.com/explore/dataset/amenagements-velo-en-ile-de-france0%40datailedefrance/table/">base URL of the dataset</a></p>
+              <p>👉You have 20k+ to choose from our <a href="https://data.opendatasoft.com/pages/home/">data network!</a></p>
             </div>
           </div>
           <div class="step" data-feature="api-query">
@@ -112,7 +114,7 @@
           <pre class="language-javascript">
 <code id="api-endpoint" class="codeline">const endpoint = 'https://data.opendatasoft.com/api/v2/catalog/datasets/amenagements-velo-en-ile-de-france%40datailedefrance/'</code>
 
-<code id="api-query" class="codeline">const query = 'aggregates?select=sum(longueur) as long_tot, count(*) as num_bikepath&group_by=nom_com&limit=10'</code>
+<code id="api-query" class="codeline">const query = 'aggregates?select=sum(longueur) as long_tot, count(*) as num_bikepath&group_by=nom_com&sort=-longueur&limit=10'</code>
 
 <code id="api-callback" class="codeline">fetch(endpoint + query)
   .then(res => res.json())
@@ -128,6 +130,8 @@
             <p>
               Going full JS alows for more complex actions, such as using the progress inside the step. To do so, you have to specify which callback you want to use.
               This boilerplate lets you prefconfigure callbacks for <code>enter, leave & progess</code> events.
+            </p>
+            <p>
               To do so, map them in the <code>app.js</code> with the name you put in the <code>data-feature</code>.
               The specified callback will then replace the default behavior of adding <code>.active</code> the div with matching id.
             </p>
@@ -142,22 +146,25 @@
     <section>
       <div class="scroll-columns">
         <div id="mapbox-steps">
-          <div class="step" data-feature="mapbox-fly">
-            <div class="story-block story-block-col">
-              <p>Then you can trigger any callback you want when steps enter and leave. Here we use a <code>flyTo</code> method.</p>
-              <p>If you feel async JS is too painful, stick to the ODS widgets, they will do the job for you 😄</p>
-            </div>
-          </div>
           <div class="step" data-feature="mapbox">
             <div class="story-block story-block-col">
-              <p>With those API call, you can fetch data and then inject them into your favorite plugins, like Mapbox GL JS.</p>
+              <p>You can combine custom callbacks with any of your favorite library. Here we use MapboxGL <code>flyTo</code>!</p>
             </div>
           </div>
         </div>
         <div class="feature-col">
-          <!-- <div name="Bikepath of Ile-de-France" id="mapbox"></div> -->
+          <div name="Bikeparking of Ile-de-France" id="mapbox"></div>
         </div>
       </div>
+    </section>
+    <section id="outro">
+      <div class="prose">
+        <p>Remember, this example shows a lot of possibilities at once but you are unlikely to use them all.
+        As with all dramatic effects: less is more!</p>
+        <p>If you want inspiration for your datastories, check-out the most excellent <a href="http://www.pudding.cool">www.pudding.cool</a> (authors of Scrollama!)</p>
+        <p>Now, the hardest part is to find a story to tell. Happy scrolling! 🚀</p>
+      </div>
+
     </section>
   </div>
 
