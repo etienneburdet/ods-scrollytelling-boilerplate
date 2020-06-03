@@ -1,4 +1,9 @@
-# ODS Widgets boilerplate
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+# ODS Scrollytelling boilerplate
+This boilerpalte will help you use [Scrollama](https://github.com/russellgoldenberg/scrollama) with data from [the Opendatasoft data network](https://data.opendatasoft.com/pages/home/)
+
+Be sure to read both the site and the code
+
 To install and run :
 
 ```
@@ -14,7 +19,12 @@ or
 npm install
 npm run dev
 ```
+Pages will be server on http://localhost:9000
 
+To deploy on gh-pages 
+```
+yarn build // npm run build
+git subtree push --prefix dist origin gh-pages
+```
 
-Pages will be server on http://localhost:9000. It auto-reloads when changing HTML or JS.
-Import every `xxx.js` file in `app.js.`
+Have fun scrolling 🔥
