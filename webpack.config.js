@@ -10,7 +10,9 @@ module.exports = {
   },
   plugins: [
     new CopyPlugin({
-      patterns: [{ from: 'src/img' }]
+      patterns: [
+        { from: 'src/img' }
+      ]
     }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({

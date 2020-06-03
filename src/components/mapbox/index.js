@@ -1,8 +1,5 @@
-/* global fetch */
 import mapboxgl from 'mapbox-gl'
-
-const baseUrl = 'https://data.opendatasoft.com/api/v2/catalog/datasets/stationnement-velo-en-ile-de-france@datailedefrance/'
-const query = 'exports/geojson'
+import data from './stationnement.json'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZXRpZW5uZWJ1cmRldCIsImEiOiJja2F4bHN2MXUwMGliMnJsN2RzNXowYzQ1In0.ju6w4WN1F_CRVNXtp5L-7w'
 
@@ -18,8 +15,7 @@ const map = new mapboxgl.Map({
 
 const mapContainer = document.getElementById('mapbox')
 
-const addDataLayer = (data) => {
-  console.log('fetched GeoJson')
+const addDataLayer = () => {
   map.addLayer({
     id: 'stationnement-velo',
     source: {
@@ -32,6 +28,7 @@ const addDataLayer = (data) => {
     }
   })
 }
+const initMapbox = () => map.on('load', addDataLayer)
 
 const zoomIn = (response) => {
   console.log('flyyyyyyyy')
@@ -56,10 +53,10 @@ const zoomOut = (response) => {
   mapContainer.classList.add('fade-out')
 }
 
-const initMapbox = () => {
-  fetch(baseUrl + query)
-    .then(response => response.json())
-    .then(addDataLayer)
-}
+// const initMapbox = () => {
+//   fetch('/stationnement.geojson')
+//     .then(response => response.json())
+//     .then(addDataLayer)
+// }
 
 export { zoomIn, zoomOut, initMapbox }
