@@ -19,6 +19,11 @@
       </div>
     </section>
     <!-- The .step div takes the full screen, inside it you want to place your text etc. which is typically not fullscreen -->
+    <div class="prose">
+      <h3>ODS Widgets</h3>
+      <p>Opendatasoft data can be consumed through a set of widgets. They will do all the data fetching and filtering work for you.
+      Let's try with some fullscreen features!</p>
+    </div>
     <section id="ods-map">
       <div id="map-idf" class="ods-map-wrapper">
         <ods-dataset-context context="velo" velo-domain="data.opendatasoft.com" velo-dataset="amenagements-velo-en-ile-de-france@datailedefrance">
@@ -29,7 +34,7 @@
       </div>
       <div class="step" data-feature="map-idf">
         <div class="story-block story-block-over story-block-left">
-          <p>When this text box crosses the trigger line—here middle of the screen—it wall add the <code>.active</code> class to the map,
+          <p>When this box enters the screen it wall add the <code>.active</code> class to the map,
             which will trigger an opacity change with <code>.ods-map-wrapper.active</code>.</p>
         </div>
       </div>
@@ -46,24 +51,49 @@
         </ods-dataset-context>
       </figure>
       <div class="step step-chart" data-feature="chart-idf">
-        <div class="story-block story-block-over story-block-crazy">
-          <p>Sticky is the most common behavior in scrollytelling: the features scrolls in, stay in place, and then scrolls out. But you can add any transition you want, like sliding from the right.
+        <div class="story-block story-block-over story-block-center story-block-crazy">
+          <p>Sticky is the most common behavior in scrollytelling: the features scrolls in, stay in place while the text box flies over it and then scrolls out. But you can add any transition you want, like sliding from the right.
             All you need to do is to customize the transition on <code>.active</code>.
           </p>
           <p>You can also style those text box as you wish!😄</p>
         </div>
       </div>
     </section>
+    <section id="step-details">
+      <div id="octonyancat" class="fullscreen-feature">
+        <img src="img/nyanocto.gif" alt="a cool gif really">
+      </div>
+      <div class="step step-explain" data-feature="octonyancat">
+        <div class="story-block story-block-over story-block-explain">
+          <p>There are two parts for the narrative block: the step container and the text-box.
+            The step container is the one that will trigger action when crossing the threshold (here middle of the screen) and has the <code>.step</code> class.
+            The text-box is what is actually displayed on the screen.
+          </p>
+          <p>
+            To size your step <code>vh</code> is the easiest and most natural way. Usuallay you want a value more than <code>100vh</code> for the whole step, so that it can enter and leave the screen before anything else happens.
+            To determine how big your step is—that is how long your user has to scroll until normal scrolling resum—use the top and bottom padding on <code>.step</code>.
+            To separate narrative element from one another—that is create blank, normal scrolling—use
+          </p>
+          <p>
+            In this boilerplate, the <code>data-feature</code> attribute of the step will reference the id of the feature you want to add the <code>.active</code> (default behavior).
+          </p>
+        </div>
+      </div>
+    </section>
     <section id="api-call">
       <div class="prose">
         <h2>External libs</h2>
-        <p>You are not limited to ODS widgets either. You can fetch the data with our API and then include it in your favorite JS libs, like mapbox GL JS, Highcharts etc.</p>
+        <p>
+          You are not limited to ODS widgets or full screen features and you can even specify your custom JS callbacks!
+          You can fetch the data with our seach API and then include it in your favorite JS libs, like mapbox GL JS, Highcharts etc.
+          Let's also also try a two columns display, where multiple steps scroll along one feature!
+        </p>
       </div>
       <div class="scroll-columns">
         <div id="steps">
           <div class="step" data-feature="api-endpoint">
             <div class="story-block story-block-col">
-              <p>To make an API call, first get the base URL of the dataset. It's the same you have in your browser</p>
+              <p>To make an API call, first get the <a href="https://data.opendatasoft.com/explore/dataset/amenagements-velo-en-ile-de-france0%40datailedefrance/table/">base URL of the dataset</a></p>
             </div>
           </div>
           <div class="step" data-feature="api-query">
@@ -74,23 +104,33 @@
           </div>
           <div class="step" data-feature="api-callback">
             <div class="story-block story-block-col">
-              <p>Finally, fetch the data using <code>fetch</code> (or using <a href="https://www.npmjs.com/package/axios">axios</a>) and use the callback to inject your data in your page.</p>
+              <p>Finally, fetch the data using <code>fetch</code> and use the callback to inject your data in your page.</p>
             </div>
           </div>
         </div>
-        <pre class="feature-col language-javascript"><code id="api-endpoint" class="codeline">const endpoint = 'https://data.opendatasoft.com/api/v2/catalog/datasets/amenagements-velo-en-ile-de-france%40datailedefrance/'</code>
+        <div class="feature-col">
+          <pre class="language-javascript">
+<code id="api-endpoint" class="codeline">const endpoint = 'https://data.opendatasoft.com/api/v2/catalog/datasets/amenagements-velo-en-ile-de-france%40datailedefrance/'</code>
+
 <code id="api-query" class="codeline">const query = 'aggregates?select=sum(longueur) as long_tot, count(*) as num_bikepath&group_by=nom_com&limit=10'</code>
+
 <code id="api-callback" class="codeline">fetch(endpoint + query)
-  .then(res => res.json()) //axios.get(…) would avoid that 😉
+  .then(res => res.json())
   .then(doSomethingWithData)</code>
-        </pre>
+          </pre>
+        </div>
       </div>
     </section>
     <section id="reveal-list">
       <div class="scroll-columns">
         <div class="step" data-feature="reveal-list">
           <div class="story-block story-block-col">
-            <p>Going full JS alows for more complex actions, such as using the progress inside the step. But if asynchronous JS seems to complicated you can still do a lot with the ODS widgets 😉.</p>
+            <p>
+              Going full JS alows for more complex actions, such as using the progress inside the step. To do so, you have to specify which callback you want to use.
+              This boilerplate lets you prefconfigure callbacks for <code>enter, leave & progess</code> events.
+              To do so, map them in the <code>app.js</code> with the name you put in the <code>data-feature</code>.
+              The specified callback will then replace the default behavior of adding <code>.active</code> the div with matching id.
+            </p>
           </div>
         </div>
         <div id="reveal-list" class="feature-col">

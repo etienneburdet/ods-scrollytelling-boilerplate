@@ -15,3 +15,26 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
+.story-block-center {
+  margin: 0 auto;
+}
+
+.story-block-crazy {
+  border-color: rgb(179, 84, 246);
+  box-shadow: 2px 2px 0px rgb(147, 62, 207);
+  border-radius: 8px;
+}
+
+.story-block-explain {
+  width: 68rem;
+  padding-top: 2rem;
+  position: relative;
+  &:before {
+    position: absolute;
+    content: ".story-block";
+    font-size: 2rem;
+    top: 0.25rem;
+    left: 0.25rem;
+  }
+}

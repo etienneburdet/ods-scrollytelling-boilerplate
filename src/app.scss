@@ -13,13 +13,17 @@ body {
   font-family: sans-serif;
 }
 
+p {
+  font-size: 1.65rem;
+  line-height: 1.65;
+}
+
 .scroll-columns {
   display: flex;
-  max-width: 89rem;
   margin: 0 auto;
 }
 
 .prose {
   max-width: 54rem;
-  margin: 21rem auto
+  margin: 3rem auto;
 }

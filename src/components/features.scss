@@ -6,6 +6,10 @@
 .feature-col {
   position: sticky;
   align-self: flex-start;
-  max-width: 55rem;
-  top: 10vh;
+  max-width: 75vh;
+  top: 33vh;
+  pre {
+    white-space: pre-wrap;
+    overflow: wrap;
+  }
 }
