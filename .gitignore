@@ -5,3 +5,5 @@ yarn-error.log
 package-lock.json
 
 .now
+
+.DS_Store
