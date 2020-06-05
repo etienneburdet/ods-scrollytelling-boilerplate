@@ -2,7 +2,7 @@
 # ODS Scrollytelling boilerplate
 This boilerpalte will help you use [Scrollama](https://github.com/russellgoldenberg/scrollama) with data from [the Opendatasoft data network](https://data.opendatasoft.com/pages/home/)
 
-Be sure to read both the site and the code! Demo right here 👉 http://etienneburdet.github.ioc/ods-scrollytelling-boilerplate/
+Be sure to read both the site and the code! Demo right here 👉 http://etienneburdet.github.io/ods-scrollytelling-boilerplate/
 
 To install and run :
 
