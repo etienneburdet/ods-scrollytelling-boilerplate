@@ -27,3 +27,12 @@ p {
   max-width: 54rem;
   margin: 3rem auto;
 }
+
+.logos {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  img {
+    margin: 2rem;
+  }
+}
